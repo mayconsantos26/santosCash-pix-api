@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Maycon Santos\\OneDrive\\Documentos\\Repositorios\\aulas-backend\\calculadora\\Calculadora\\Calculadora.csproj": {}
+    "C:\\Users\\Maycon Santos\\OneDrive\\Documentos\\Repositorios\\aulas-backend\\calculadora\\Calculadora.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Maycon Santos\\OneDrive\\Documentos\\Repositorios\\aulas-backend\\calculadora\\Calculadora\\Calculadora.csproj": {
+    "C:\\Users\\Maycon Santos\\OneDrive\\Documentos\\Repositorios\\aulas-backend\\calculadora\\Calculadora.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Maycon Santos\\OneDrive\\Documentos\\Repositorios\\aulas-backend\\calculadora\\Calculadora\\Calculadora.csproj",
+        "projectUniqueName": "C:\\Users\\Maycon Santos\\OneDrive\\Documentos\\Repositorios\\aulas-backend\\calculadora\\Calculadora.csproj",
         "projectName": "Calculadora",
-        "projectPath": "C:\\Users\\Maycon Santos\\OneDrive\\Documentos\\Repositorios\\aulas-backend\\calculadora\\Calculadora\\Calculadora.csproj",
+        "projectPath": "C:\\Users\\Maycon Santos\\OneDrive\\Documentos\\Repositorios\\aulas-backend\\calculadora\\Calculadora.csproj",
         "packagesPath": "C:\\Users\\Maycon Santos\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Maycon Santos\\OneDrive\\Documentos\\Repositorios\\aulas-backend\\calculadora\\Calculadora\\obj\\",
+        "outputPath": "C:\\Users\\Maycon Santos\\OneDrive\\Documentos\\Repositorios\\aulas-backend\\calculadora\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Maycon Santos\\AppData\\Roaming\\NuGet\\NuGet.Config"

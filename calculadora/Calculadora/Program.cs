@@ -1,4 +1,4 @@
-﻿    namespace Calculadora;
+﻿namespace Calculadora;
 
 public class Program {
     static void Main(string[] args)

@@ -228,3 +228,13 @@ C:\Users\fastc\OneDrive\Documentos\MicroTeste\SantosCash\obj\Debug\net9.0\refint
 C:\Users\fastc\OneDrive\Documentos\MicroTeste\SantosCash\obj\Debug\net9.0\SantosCash.pdb
 C:\Users\fastc\OneDrive\Documentos\MicroTeste\SantosCash\obj\Debug\net9.0\SantosCash.genruntimeconfig.cache
 C:\Users\fastc\OneDrive\Documentos\MicroTeste\SantosCash\obj\Debug\net9.0\ref\SantosCash.dll
+C:\Users\fastc\OneDrive\Documentos\Repositorios_Micro\aulas-backend\MicroTeste\SantosCash\obj\Debug\net9.0\SantosCash.csproj.AssemblyReference.cache
+C:\Users\fastc\OneDrive\Documentos\Repositorios_Micro\aulas-backend\MicroTeste\SantosCash\obj\Debug\net9.0\SantosCash.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\fastc\OneDrive\Documentos\Repositorios_Micro\aulas-backend\MicroTeste\SantosCash\obj\Debug\net9.0\SantosCash.AssemblyInfoInputs.cache
+C:\Users\fastc\OneDrive\Documentos\Repositorios_Micro\aulas-backend\MicroTeste\SantosCash\obj\Debug\net9.0\SantosCash.AssemblyInfo.cs
+C:\Users\fastc\OneDrive\Documentos\Repositorios_Micro\aulas-backend\MicroTeste\SantosCash\obj\Debug\net9.0\SantosCash.csproj.CoreCompileInputs.cache
+C:\Users\fastc\OneDrive\Documentos\Repositorios_Micro\aulas-backend\MicroTeste\SantosCash\obj\Debug\net9.0\SantosCash.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\fastc\OneDrive\Documentos\Repositorios_Micro\aulas-backend\MicroTeste\SantosCash\obj\Debug\net9.0\SantosCash.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\fastc\OneDrive\Documentos\Repositorios_Micro\aulas-backend\MicroTeste\SantosCash\obj\Debug\net9.0\SantosCash.RazorAssemblyInfo.cache
+C:\Users\fastc\OneDrive\Documentos\Repositorios_Micro\aulas-backend\MicroTeste\SantosCash\obj\Debug\net9.0\SantosCash.RazorAssemblyInfo.cs
+C:\Users\fastc\OneDrive\Documentos\Repositorios_Micro\aulas-backend\MicroTeste\SantosCash\obj\Debug\net9.0\SantosCash.sourcelink.json

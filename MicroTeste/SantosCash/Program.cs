@@ -6,7 +6,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 // Configuração da conexão com o BD MySQL
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews(); // MVC
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies()); // mapeamento de entidades
 
 string mySqlConnection = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<AppDbContext>(options => options.UseMySql(mySqlConnection, ServerVersion.AutoDetect(mySqlConnection)));

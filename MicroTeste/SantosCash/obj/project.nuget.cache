@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "dgSpecHash": "JbWVmr+Avcg=",
-  "success": false,
+  "dgSpecHash": "QcWye+GpXIs=",
+  "success": true,
   "projectFilePath": "C:\\Users\\fastc\\OneDrive\\Documentos\\Repositorios_Micro\\aulas-backend\\MicroTeste\\SantosCash\\SantosCash.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\fastc\\.nuget\\packages\\asp.versioning.abstractions\\8.1.0\\asp.versioning.abstractions.8.1.0.nupkg.sha512",
@@ -32,11 +32,11 @@
     "C:\\Users\\fastc\\.nuget\\packages\\microsoft.codeanalysis.workspaces.common\\4.8.0\\microsoft.codeanalysis.workspaces.common.4.8.0.nupkg.sha512",
     "C:\\Users\\fastc\\.nuget\\packages\\microsoft.codeanalysis.workspaces.msbuild\\4.8.0\\microsoft.codeanalysis.workspaces.msbuild.4.8.0.nupkg.sha512",
     "C:\\Users\\fastc\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
-    "C:\\Users\\fastc\\.nuget\\packages\\microsoft.entityframeworkcore\\9.0.0-preview.2.24128.4\\microsoft.entityframeworkcore.9.0.0-preview.2.24128.4.nupkg.sha512",
-    "C:\\Users\\fastc\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\9.0.0-preview.2.24128.4\\microsoft.entityframeworkcore.abstractions.9.0.0-preview.2.24128.4.nupkg.sha512",
-    "C:\\Users\\fastc\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\9.0.0-preview.2.24128.4\\microsoft.entityframeworkcore.analyzers.9.0.0-preview.2.24128.4.nupkg.sha512",
+    "C:\\Users\\fastc\\.nuget\\packages\\microsoft.entityframeworkcore\\9.0.0\\microsoft.entityframeworkcore.9.0.0.nupkg.sha512",
+    "C:\\Users\\fastc\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\9.0.0\\microsoft.entityframeworkcore.abstractions.9.0.0.nupkg.sha512",
+    "C:\\Users\\fastc\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\9.0.0\\microsoft.entityframeworkcore.analyzers.9.0.0.nupkg.sha512",
     "C:\\Users\\fastc\\.nuget\\packages\\microsoft.entityframeworkcore.design\\9.0.0\\microsoft.entityframeworkcore.design.9.0.0.nupkg.sha512",
-    "C:\\Users\\fastc\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\9.0.0-preview.2.24128.4\\microsoft.entityframeworkcore.relational.9.0.0-preview.2.24128.4.nupkg.sha512",
+    "C:\\Users\\fastc\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\9.0.0\\microsoft.entityframeworkcore.relational.9.0.0.nupkg.sha512",
     "C:\\Users\\fastc\\.nuget\\packages\\microsoft.entityframeworkcore.tools\\9.0.0\\microsoft.entityframeworkcore.tools.9.0.0.nupkg.sha512",
     "C:\\Users\\fastc\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
     "C:\\Users\\fastc\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\9.0.0\\microsoft.extensions.caching.abstractions.9.0.0.nupkg.sha512",
@@ -104,35 +104,5 @@
     "C:\\Users\\fastc\\.nuget\\packages\\x.pagedlist.mvc.core\\10.5.7\\x.pagedlist.mvc.core.10.5.7.nupkg.sha512",
     "C:\\Users\\fastc\\.nuget\\packages\\zstdsharp.port\\0.8.0\\zstdsharp.port.0.8.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1603",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "SantosCash depende de Microsoft.EntityFrameworkCore (>= 9.0.0-preview.2.23157.2) mas Microsoft.EntityFrameworkCore 9.0.0-preview.2.23157.2 não foi encontrado. Microsoft.EntityFrameworkCore 9.0.0-preview.2.24128.4 foi resolvido.",
-      "libraryId": "Microsoft.EntityFrameworkCore",
-      "targetGraphs": [
-        "net9.0"
-      ]
-    },
-    {
-      "code": "NU1603",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "SantosCash depende de Microsoft.EntityFrameworkCore.Relational (>= 9.0.0-preview.2.23157.2) mas Microsoft.EntityFrameworkCore.Relational 9.0.0-preview.2.23157.2 não foi encontrado. Microsoft.EntityFrameworkCore.Relational 9.0.0-preview.2.24128.4 foi resolvido.",
-      "libraryId": "Microsoft.EntityFrameworkCore.Relational",
-      "targetGraphs": [
-        "net9.0"
-      ]
-    },
-    {
-      "code": "NU1605",
-      "level": "Error",
-      "message": "Aviso como Erro: Downgrade de pacote detectado: Microsoft.EntityFrameworkCore.Relational de 9.0.0 para 9.0.0-preview.2.24128.4. Referencie o pacote diretamente do projeto para selecionar uma versão diferente. \r\n SantosCash -> Microsoft.AspNetCore.Identity.EntityFrameworkCore 9.0.0 -> Microsoft.EntityFrameworkCore.Relational (>= 9.0.0) \r\n SantosCash -> Microsoft.EntityFrameworkCore.Relational (>= 9.0.0-preview.2.23157.2)",
-      "libraryId": "Microsoft.EntityFrameworkCore.Relational",
-      "targetGraphs": [
-        "net9.0"
-      ]
-    }
-  ]
+  "logs": []
 }

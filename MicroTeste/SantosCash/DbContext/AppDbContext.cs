@@ -12,7 +12,7 @@ public class AppDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder mb)
     {
-        // Fluent API - Definição de regras erelacionamentos das entidades no Banco de Dados
+        // Fluent API - Definição de regras e relacionamentos das entidades no Banco de Dados
 
 
         // Definição da entidade Transações

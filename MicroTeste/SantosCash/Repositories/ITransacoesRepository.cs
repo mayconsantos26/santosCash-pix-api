@@ -1,6 +1,6 @@
 ﻿using MicroTeste.Models;
 
-namespace SantosCash;
+namespace Repositories;
 
 public interface ITransacoesRepository
 {

@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using MicroTeste.Models;
 
-namespace SantosCash;
+namespace Repositories;
 
 public class TransacoesRepository : ITransacoesRepository
 {

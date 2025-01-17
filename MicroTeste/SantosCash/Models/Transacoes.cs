@@ -68,6 +68,7 @@ public class Transacoes
     [Column("valor", TypeName = "decimal(10,2)")]
     public decimal Valor { get; set; } // Valor da transação
 
+    [Column("data_transacao")]
     public DateTime Data_Transacao { get; set; } // Data e hora da transação
 }
 

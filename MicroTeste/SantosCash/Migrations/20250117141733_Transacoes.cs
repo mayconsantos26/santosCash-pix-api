@@ -44,7 +44,7 @@ namespace SantosCash.Migrations
                     recebedor_agencia = table.Column<string>(type: "character varying(6)", maxLength: 6, nullable: false),
                     recebedor_conta = table.Column<string>(type: "character varying(10)", maxLength: 10, nullable: false),
                     valor = table.Column<decimal>(type: "numeric(10,2)", precision: 10, scale: 2, nullable: false),
-                    Data_Transacao = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                    data_transacao = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {

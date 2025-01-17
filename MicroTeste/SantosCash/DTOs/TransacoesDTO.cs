@@ -11,6 +11,7 @@ public class TransacoesDTO
     public string? Id { get; set; }
 
     [Required]
+    [Column("txid")]
     [StringLength(35, MinimumLength = 26, ErrorMessage = "O Txid deve ter entre 26 e 35 caracteres.")]
     [RegularExpression("^[A-Za-z0-9]*$", ErrorMessage = "O Txid deve ter apenas letras e números.")]
     public string? Txid { get; set; } // Identificador único da transação deve ter entre 26 a 35 caracteres

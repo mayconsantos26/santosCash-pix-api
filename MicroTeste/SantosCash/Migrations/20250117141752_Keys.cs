@@ -5,7 +5,7 @@
 namespace SantosCash.Migrations
 {
     /// <inheritdoc />
-    public partial class Transacoes : Migration
+    public partial class Keys : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

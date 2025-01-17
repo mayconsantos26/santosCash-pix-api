@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "5GhgK+GNQSoy6reTkTjuMiL4qxXJ991rwzsTuzF/ejQ=",
+  "Hash": "saE6GOG4ulyuI1tgxHi3ToyG6GItLS444BVD5xjqpAc=",
   "Source": "SantosCash",
   "BasePath": "_content/SantosCash",
   "Mode": "Default",
@@ -9,10 +9,10 @@
   "DiscoveryPatterns": [],
   "Assets": [
     {
-      "Identity": "C:\\Users\\fastc\\OneDrive\\Documentos\\Repositorios_Micro\\aulas-backend\\MicroTeste\\SantosCash\\obj\\Debug\\net9.0\\compressed\\0kmne6usdv-pfs6xkr8vg.gz",
+      "Identity": "C:\\Users\\Fastcash Analista\\Documents\\GitHub\\aulas-backend\\MicroTeste\\SantosCash\\obj\\Debug\\net9.0\\compressed\\0kmne6usdv-pfs6xkr8vg.gz",
       "SourceId": "SantosCash",
       "SourceType": "Computed",
-      "ContentRoot": "C:\\Users\\fastc\\OneDrive\\Documentos\\Repositorios_Micro\\aulas-backend\\MicroTeste\\SantosCash\\obj\\Debug\\net9.0\\compressed\\",
+      "ContentRoot": "C:\\Users\\Fastcash Analista\\Documents\\GitHub\\aulas-backend\\MicroTeste\\SantosCash\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "_content/SantosCash",
       "RelativePath": "SantosCash#[.{fingerprint=pfs6xkr8vg}]?.styles.css.gz",
       "AssetKind": "All",
@@ -20,20 +20,20 @@
       "AssetRole": "Alternative",
       "AssetMergeBehavior": "",
       "AssetMergeSource": "",
-      "RelatedAsset": "C:\\Users\\fastc\\OneDrive\\Documentos\\Repositorios_Micro\\aulas-backend\\MicroTeste\\SantosCash\\obj\\Debug\\net9.0\\scopedcss\\bundle\\SantosCash.styles.css",
+      "RelatedAsset": "C:\\Users\\Fastcash Analista\\Documents\\GitHub\\aulas-backend\\MicroTeste\\SantosCash\\obj\\Debug\\net9.0\\scopedcss\\bundle\\SantosCash.styles.css",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
       "Fingerprint": "khk89zwlvn",
       "Integrity": "uG5JEHtfevtOjbxOBDOMGpu/QmR9TvLZFCwqNtLG5Gs=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\fastc\\OneDrive\\Documentos\\Repositorios_Micro\\aulas-backend\\MicroTeste\\SantosCash\\obj\\Debug\\net9.0\\scopedcss\\bundle\\SantosCash.styles.css"
+      "OriginalItemSpec": "C:\\Users\\Fastcash Analista\\Documents\\GitHub\\aulas-backend\\MicroTeste\\SantosCash\\obj\\Debug\\net9.0\\scopedcss\\bundle\\SantosCash.styles.css"
     },
     {
-      "Identity": "C:\\Users\\fastc\\OneDrive\\Documentos\\Repositorios_Micro\\aulas-backend\\MicroTeste\\SantosCash\\obj\\Debug\\net9.0\\compressed\\6mktcuy6gl-pfs6xkr8vg.gz",
+      "Identity": "C:\\Users\\Fastcash Analista\\Documents\\GitHub\\aulas-backend\\MicroTeste\\SantosCash\\obj\\Debug\\net9.0\\compressed\\6mktcuy6gl-pfs6xkr8vg.gz",
       "SourceId": "SantosCash",
       "SourceType": "Computed",
-      "ContentRoot": "C:\\Users\\fastc\\OneDrive\\Documentos\\Repositorios_Micro\\aulas-backend\\MicroTeste\\SantosCash\\obj\\Debug\\net9.0\\compressed\\",
+      "ContentRoot": "C:\\Users\\Fastcash Analista\\Documents\\GitHub\\aulas-backend\\MicroTeste\\SantosCash\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "_content/SantosCash",
       "RelativePath": "SantosCash#[.{fingerprint=pfs6xkr8vg}]!.bundle.scp.css.gz",
       "AssetKind": "All",
@@ -41,20 +41,20 @@
       "AssetRole": "Alternative",
       "AssetMergeBehavior": "",
       "AssetMergeSource": "",
-      "RelatedAsset": "C:\\Users\\fastc\\OneDrive\\Documentos\\Repositorios_Micro\\aulas-backend\\MicroTeste\\SantosCash\\obj\\Debug\\net9.0\\scopedcss\\projectbundle\\SantosCash.bundle.scp.css",
+      "RelatedAsset": "C:\\Users\\Fastcash Analista\\Documents\\GitHub\\aulas-backend\\MicroTeste\\SantosCash\\obj\\Debug\\net9.0\\scopedcss\\projectbundle\\SantosCash.bundle.scp.css",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
       "Fingerprint": "khk89zwlvn",
       "Integrity": "uG5JEHtfevtOjbxOBDOMGpu/QmR9TvLZFCwqNtLG5Gs=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\fastc\\OneDrive\\Documentos\\Repositorios_Micro\\aulas-backend\\MicroTeste\\SantosCash\\obj\\Debug\\net9.0\\scopedcss\\projectbundle\\SantosCash.bundle.scp.css"
+      "OriginalItemSpec": "C:\\Users\\Fastcash Analista\\Documents\\GitHub\\aulas-backend\\MicroTeste\\SantosCash\\obj\\Debug\\net9.0\\scopedcss\\projectbundle\\SantosCash.bundle.scp.css"
     },
     {
-      "Identity": "C:\\Users\\fastc\\OneDrive\\Documentos\\Repositorios_Micro\\aulas-backend\\MicroTeste\\SantosCash\\obj\\Debug\\net9.0\\scopedcss\\bundle\\SantosCash.styles.css",
+      "Identity": "C:\\Users\\Fastcash Analista\\Documents\\GitHub\\aulas-backend\\MicroTeste\\SantosCash\\obj\\Debug\\net9.0\\scopedcss\\bundle\\SantosCash.styles.css",
       "SourceId": "SantosCash",
       "SourceType": "Computed",
-      "ContentRoot": "C:\\Users\\fastc\\OneDrive\\Documentos\\Repositorios_Micro\\aulas-backend\\MicroTeste\\SantosCash\\obj\\Debug\\net9.0\\scopedcss\\bundle\\",
+      "ContentRoot": "C:\\Users\\Fastcash Analista\\Documents\\GitHub\\aulas-backend\\MicroTeste\\SantosCash\\obj\\Debug\\net9.0\\scopedcss\\bundle\\",
       "BasePath": "_content/SantosCash",
       "RelativePath": "SantosCash#[.{fingerprint}]?.styles.css",
       "AssetKind": "All",
@@ -69,13 +69,13 @@
       "Integrity": "i+nQVtOYR9WpvebkMZIOMZhsLIIZ9c26iViigROc0kQ=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\fastc\\OneDrive\\Documentos\\Repositorios_Micro\\aulas-backend\\MicroTeste\\SantosCash\\obj\\Debug\\net9.0\\scopedcss\\bundle\\SantosCash.styles.css"
+      "OriginalItemSpec": "C:\\Users\\Fastcash Analista\\Documents\\GitHub\\aulas-backend\\MicroTeste\\SantosCash\\obj\\Debug\\net9.0\\scopedcss\\bundle\\SantosCash.styles.css"
     },
     {
-      "Identity": "C:\\Users\\fastc\\OneDrive\\Documentos\\Repositorios_Micro\\aulas-backend\\MicroTeste\\SantosCash\\obj\\Debug\\net9.0\\scopedcss\\projectbundle\\SantosCash.bundle.scp.css",
+      "Identity": "C:\\Users\\Fastcash Analista\\Documents\\GitHub\\aulas-backend\\MicroTeste\\SantosCash\\obj\\Debug\\net9.0\\scopedcss\\projectbundle\\SantosCash.bundle.scp.css",
       "SourceId": "SantosCash",
       "SourceType": "Computed",
-      "ContentRoot": "C:\\Users\\fastc\\OneDrive\\Documentos\\Repositorios_Micro\\aulas-backend\\MicroTeste\\SantosCash\\obj\\Debug\\net9.0\\scopedcss\\projectbundle\\",
+      "ContentRoot": "C:\\Users\\Fastcash Analista\\Documents\\GitHub\\aulas-backend\\MicroTeste\\SantosCash\\obj\\Debug\\net9.0\\scopedcss\\projectbundle\\",
       "BasePath": "_content/SantosCash",
       "RelativePath": "SantosCash#[.{fingerprint}]!.bundle.scp.css",
       "AssetKind": "All",
@@ -90,13 +90,13 @@
       "Integrity": "i+nQVtOYR9WpvebkMZIOMZhsLIIZ9c26iViigROc0kQ=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\fastc\\OneDrive\\Documentos\\Repositorios_Micro\\aulas-backend\\MicroTeste\\SantosCash\\obj\\Debug\\net9.0\\scopedcss\\projectbundle\\SantosCash.bundle.scp.css"
+      "OriginalItemSpec": "C:\\Users\\Fastcash Analista\\Documents\\GitHub\\aulas-backend\\MicroTeste\\SantosCash\\obj\\Debug\\net9.0\\scopedcss\\projectbundle\\SantosCash.bundle.scp.css"
     }
   ],
   "Endpoints": [
     {
       "Route": "SantosCash.bundle.scp.css",
-      "AssetFile": "C:\\Users\\fastc\\OneDrive\\Documentos\\Repositorios_Micro\\aulas-backend\\MicroTeste\\SantosCash\\obj\\Debug\\net9.0\\compressed\\6mktcuy6gl-pfs6xkr8vg.gz",
+      "AssetFile": "C:\\Users\\Fastcash Analista\\Documents\\GitHub\\aulas-backend\\MicroTeste\\SantosCash\\obj\\Debug\\net9.0\\compressed\\6mktcuy6gl-pfs6xkr8vg.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -119,7 +119,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 15 Jan 2025 18:03:16 GMT"
+          "Value": "Fri, 17 Jan 2025 14:54:04 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -151,7 +151,7 @@
     },
     {
       "Route": "SantosCash.bundle.scp.css",
-      "AssetFile": "C:\\Users\\fastc\\OneDrive\\Documentos\\Repositorios_Micro\\aulas-backend\\MicroTeste\\SantosCash\\obj\\Debug\\net9.0\\scopedcss\\projectbundle\\SantosCash.bundle.scp.css",
+      "AssetFile": "C:\\Users\\Fastcash Analista\\Documents\\GitHub\\aulas-backend\\MicroTeste\\SantosCash\\obj\\Debug\\net9.0\\scopedcss\\projectbundle\\SantosCash.bundle.scp.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -172,7 +172,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 15 Jan 2025 18:03:16 GMT"
+          "Value": "Fri, 17 Jan 2025 14:54:04 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -188,7 +188,7 @@
     },
     {
       "Route": "SantosCash.bundle.scp.css.gz",
-      "AssetFile": "C:\\Users\\fastc\\OneDrive\\Documentos\\Repositorios_Micro\\aulas-backend\\MicroTeste\\SantosCash\\obj\\Debug\\net9.0\\compressed\\6mktcuy6gl-pfs6xkr8vg.gz",
+      "AssetFile": "C:\\Users\\Fastcash Analista\\Documents\\GitHub\\aulas-backend\\MicroTeste\\SantosCash\\obj\\Debug\\net9.0\\compressed\\6mktcuy6gl-pfs6xkr8vg.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -209,7 +209,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 15 Jan 2025 18:03:16 GMT"
+          "Value": "Fri, 17 Jan 2025 14:54:04 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -233,7 +233,7 @@
     },
     {
       "Route": "SantosCash.pfs6xkr8vg.bundle.scp.css",
-      "AssetFile": "C:\\Users\\fastc\\OneDrive\\Documentos\\Repositorios_Micro\\aulas-backend\\MicroTeste\\SantosCash\\obj\\Debug\\net9.0\\compressed\\6mktcuy6gl-pfs6xkr8vg.gz",
+      "AssetFile": "C:\\Users\\Fastcash Analista\\Documents\\GitHub\\aulas-backend\\MicroTeste\\SantosCash\\obj\\Debug\\net9.0\\compressed\\6mktcuy6gl-pfs6xkr8vg.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -256,7 +256,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 15 Jan 2025 18:03:16 GMT"
+          "Value": "Fri, 17 Jan 2025 14:54:04 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -296,7 +296,7 @@
     },
     {
       "Route": "SantosCash.pfs6xkr8vg.bundle.scp.css",
-      "AssetFile": "C:\\Users\\fastc\\OneDrive\\Documentos\\Repositorios_Micro\\aulas-backend\\MicroTeste\\SantosCash\\obj\\Debug\\net9.0\\scopedcss\\projectbundle\\SantosCash.bundle.scp.css",
+      "AssetFile": "C:\\Users\\Fastcash Analista\\Documents\\GitHub\\aulas-backend\\MicroTeste\\SantosCash\\obj\\Debug\\net9.0\\scopedcss\\projectbundle\\SantosCash.bundle.scp.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -317,7 +317,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 15 Jan 2025 18:03:16 GMT"
+          "Value": "Fri, 17 Jan 2025 14:54:04 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -341,7 +341,7 @@
     },
     {
       "Route": "SantosCash.pfs6xkr8vg.bundle.scp.css.gz",
-      "AssetFile": "C:\\Users\\fastc\\OneDrive\\Documentos\\Repositorios_Micro\\aulas-backend\\MicroTeste\\SantosCash\\obj\\Debug\\net9.0\\compressed\\6mktcuy6gl-pfs6xkr8vg.gz",
+      "AssetFile": "C:\\Users\\Fastcash Analista\\Documents\\GitHub\\aulas-backend\\MicroTeste\\SantosCash\\obj\\Debug\\net9.0\\compressed\\6mktcuy6gl-pfs6xkr8vg.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -362,7 +362,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 15 Jan 2025 18:03:16 GMT"
+          "Value": "Fri, 17 Jan 2025 14:54:04 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -394,7 +394,7 @@
     },
     {
       "Route": "SantosCash.pfs6xkr8vg.styles.css",
-      "AssetFile": "C:\\Users\\fastc\\OneDrive\\Documentos\\Repositorios_Micro\\aulas-backend\\MicroTeste\\SantosCash\\obj\\Debug\\net9.0\\compressed\\0kmne6usdv-pfs6xkr8vg.gz",
+      "AssetFile": "C:\\Users\\Fastcash Analista\\Documents\\GitHub\\aulas-backend\\MicroTeste\\SantosCash\\obj\\Debug\\net9.0\\compressed\\0kmne6usdv-pfs6xkr8vg.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -417,7 +417,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 15 Jan 2025 18:03:16 GMT"
+          "Value": "Fri, 17 Jan 2025 14:54:04 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -457,7 +457,7 @@
     },
     {
       "Route": "SantosCash.pfs6xkr8vg.styles.css",
-      "AssetFile": "C:\\Users\\fastc\\OneDrive\\Documentos\\Repositorios_Micro\\aulas-backend\\MicroTeste\\SantosCash\\obj\\Debug\\net9.0\\scopedcss\\bundle\\SantosCash.styles.css",
+      "AssetFile": "C:\\Users\\Fastcash Analista\\Documents\\GitHub\\aulas-backend\\MicroTeste\\SantosCash\\obj\\Debug\\net9.0\\scopedcss\\bundle\\SantosCash.styles.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -478,7 +478,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 15 Jan 2025 18:03:16 GMT"
+          "Value": "Fri, 17 Jan 2025 14:54:04 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -502,7 +502,7 @@
     },
     {
       "Route": "SantosCash.pfs6xkr8vg.styles.css.gz",
-      "AssetFile": "C:\\Users\\fastc\\OneDrive\\Documentos\\Repositorios_Micro\\aulas-backend\\MicroTeste\\SantosCash\\obj\\Debug\\net9.0\\compressed\\0kmne6usdv-pfs6xkr8vg.gz",
+      "AssetFile": "C:\\Users\\Fastcash Analista\\Documents\\GitHub\\aulas-backend\\MicroTeste\\SantosCash\\obj\\Debug\\net9.0\\compressed\\0kmne6usdv-pfs6xkr8vg.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -523,7 +523,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 15 Jan 2025 18:03:16 GMT"
+          "Value": "Fri, 17 Jan 2025 14:54:04 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -555,7 +555,7 @@
     },
     {
       "Route": "SantosCash.styles.css",
-      "AssetFile": "C:\\Users\\fastc\\OneDrive\\Documentos\\Repositorios_Micro\\aulas-backend\\MicroTeste\\SantosCash\\obj\\Debug\\net9.0\\compressed\\0kmne6usdv-pfs6xkr8vg.gz",
+      "AssetFile": "C:\\Users\\Fastcash Analista\\Documents\\GitHub\\aulas-backend\\MicroTeste\\SantosCash\\obj\\Debug\\net9.0\\compressed\\0kmne6usdv-pfs6xkr8vg.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
@@ -578,7 +578,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 15 Jan 2025 18:03:16 GMT"
+          "Value": "Fri, 17 Jan 2025 14:54:04 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -610,7 +610,7 @@
     },
     {
       "Route": "SantosCash.styles.css",
-      "AssetFile": "C:\\Users\\fastc\\OneDrive\\Documentos\\Repositorios_Micro\\aulas-backend\\MicroTeste\\SantosCash\\obj\\Debug\\net9.0\\scopedcss\\bundle\\SantosCash.styles.css",
+      "AssetFile": "C:\\Users\\Fastcash Analista\\Documents\\GitHub\\aulas-backend\\MicroTeste\\SantosCash\\obj\\Debug\\net9.0\\scopedcss\\bundle\\SantosCash.styles.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -631,7 +631,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 15 Jan 2025 18:03:16 GMT"
+          "Value": "Fri, 17 Jan 2025 14:54:04 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -647,7 +647,7 @@
     },
     {
       "Route": "SantosCash.styles.css.gz",
-      "AssetFile": "C:\\Users\\fastc\\OneDrive\\Documentos\\Repositorios_Micro\\aulas-backend\\MicroTeste\\SantosCash\\obj\\Debug\\net9.0\\compressed\\0kmne6usdv-pfs6xkr8vg.gz",
+      "AssetFile": "C:\\Users\\Fastcash Analista\\Documents\\GitHub\\aulas-backend\\MicroTeste\\SantosCash\\obj\\Debug\\net9.0\\compressed\\0kmne6usdv-pfs6xkr8vg.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -668,7 +668,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 15 Jan 2025 18:03:16 GMT"
+          "Value": "Fri, 17 Jan 2025 14:54:04 GMT"
         },
         {
           "Name": "Cache-Control",

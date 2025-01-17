@@ -1,8 +1,7 @@
 ﻿using AutoMapper;
-using DTOs;
 using MicroTeste.Models;
 
-namespace SantosCash;
+namespace DTOs.Mappings;
 
 public class MappingProfile : Profile
 {

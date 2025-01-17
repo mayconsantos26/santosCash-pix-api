@@ -3,8 +3,8 @@ using System;
 using Dbcontext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
@@ -18,39 +18,39 @@ namespace SantosCash.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "9.0.0")
-                .HasAnnotation("Relational:MaxIdentifierLength", 64);
+                .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
-            MySqlModelBuilderExtensions.AutoIncrementColumns(modelBuilder);
+            NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
             modelBuilder.Entity("MicroTeste.Models.Keys", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("varchar(255)")
+                        .HasColumnType("text")
                         .HasColumnName("id");
 
                     b.Property<string>("ApiKey")
                         .IsRequired()
                         .HasMaxLength(64)
-                        .HasColumnType("varchar(64)")
+                        .HasColumnType("character varying(64)")
                         .HasColumnName("key");
 
                     b.Property<string>("Cnpj")
                         .IsRequired()
                         .HasMaxLength(14)
-                        .HasColumnType("varchar(14)")
+                        .HasColumnType("character varying(14)")
                         .HasColumnName("cnpj");
 
                     b.Property<string>("Conta")
                         .IsRequired()
                         .HasMaxLength(10)
-                        .HasColumnType("varchar(10)")
+                        .HasColumnType("character varying(10)")
                         .HasColumnName("conta");
 
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("varchar(100)")
+                        .HasColumnType("character varying(100)")
                         .HasColumnName("nome");
 
                     b.HasKey("Id");
@@ -62,82 +62,83 @@ namespace SantosCash.Migrations
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("varchar(255)")
+                        .HasColumnType("text")
                         .HasColumnName("id");
 
                     b.Property<DateTime>("Data_Transacao")
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("E2E_Id")
                         .IsRequired()
                         .HasMaxLength(64)
-                        .HasColumnType("varchar(64)")
+                        .HasColumnType("character varying(64)")
                         .HasColumnName("e2e_id");
 
                     b.Property<string>("Pagador_Agencia")
                         .IsRequired()
                         .HasMaxLength(6)
-                        .HasColumnType("varchar(6)")
+                        .HasColumnType("character varying(6)")
                         .HasColumnName("pagador_agencia");
 
                     b.Property<string>("Pagador_Banco")
                         .IsRequired()
                         .HasMaxLength(8)
-                        .HasColumnType("varchar(8)")
+                        .HasColumnType("character varying(8)")
                         .HasColumnName("pagador_banco");
 
                     b.Property<string>("Pagador_Conta")
                         .IsRequired()
                         .HasMaxLength(10)
-                        .HasColumnType("varchar(10)")
+                        .HasColumnType("character varying(10)")
                         .HasColumnName("pagador_conta");
 
                     b.Property<string>("Pagador_Cpf")
                         .IsRequired()
                         .HasMaxLength(11)
-                        .HasColumnType("varchar(11)")
+                        .HasColumnType("character varying(11)")
                         .HasColumnName("pagador_documento");
 
                     b.Property<string>("Pagador_Nome")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("varchar(100)")
+                        .HasColumnType("character varying(100)")
                         .HasColumnName("pagador_nome");
 
                     b.Property<string>("Recebedor_Agencia")
                         .IsRequired()
                         .HasMaxLength(6)
-                        .HasColumnType("varchar(6)")
+                        .HasColumnType("character varying(6)")
                         .HasColumnName("recebedor_agencia");
 
                     b.Property<string>("Recebedor_Banco")
                         .IsRequired()
                         .HasMaxLength(8)
-                        .HasColumnType("varchar(8)")
+                        .HasColumnType("character varying(8)")
                         .HasColumnName("recebedor_banco");
 
                     b.Property<string>("Recebedor_Conta")
                         .IsRequired()
                         .HasMaxLength(10)
-                        .HasColumnType("varchar(10)")
+                        .HasColumnType("character varying(10)")
                         .HasColumnName("recebedor_conta");
 
                     b.Property<string>("Recebedor_Cpf")
                         .IsRequired()
                         .HasMaxLength(11)
-                        .HasColumnType("varchar(11)")
+                        .HasColumnType("character varying(11)")
                         .HasColumnName("recebedor_documento");
 
                     b.Property<string>("Recebedor_Nome")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("varchar(100)")
+                        .HasColumnType("character varying(100)")
                         .HasColumnName("recebedor_nome");
 
                     b.Property<string>("Txid")
                         .IsRequired()
                         .HasMaxLength(35)
-                        .HasColumnType("varchar(35)");
+                        .HasColumnType("character varying(35)")
+                        .HasColumnName("txid");
 
                     b.Property<decimal>("Valor")
                         .HasPrecision(10, 2)

@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\fastc\\OneDrive\\Documentos\\Repositorios_Micro\\aulas-backend\\MicroTeste\\SantosCash\\SantosCash.csproj": {}
+    "C:\\Users\\Fastcash Analista\\Documents\\GitHub\\aulas-backend\\MicroTeste\\SantosCash\\SantosCash.csproj": {}
   },
   "projects": {
-    "C:\\Users\\fastc\\OneDrive\\Documentos\\Repositorios_Micro\\aulas-backend\\MicroTeste\\SantosCash\\SantosCash.csproj": {
+    "C:\\Users\\Fastcash Analista\\Documents\\GitHub\\aulas-backend\\MicroTeste\\SantosCash\\SantosCash.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\fastc\\OneDrive\\Documentos\\Repositorios_Micro\\aulas-backend\\MicroTeste\\SantosCash\\SantosCash.csproj",
+        "projectUniqueName": "C:\\Users\\Fastcash Analista\\Documents\\GitHub\\aulas-backend\\MicroTeste\\SantosCash\\SantosCash.csproj",
         "projectName": "SantosCash",
-        "projectPath": "C:\\Users\\fastc\\OneDrive\\Documentos\\Repositorios_Micro\\aulas-backend\\MicroTeste\\SantosCash\\SantosCash.csproj",
-        "packagesPath": "C:\\Users\\fastc\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\fastc\\OneDrive\\Documentos\\Repositorios_Micro\\aulas-backend\\MicroTeste\\SantosCash\\obj\\",
+        "projectPath": "C:\\Users\\Fastcash Analista\\Documents\\GitHub\\aulas-backend\\MicroTeste\\SantosCash\\SantosCash.csproj",
+        "packagesPath": "C:\\Users\\Fastcash Analista\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Fastcash Analista\\Documents\\GitHub\\aulas-backend\\MicroTeste\\SantosCash\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\fastc\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Fastcash Analista\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
@@ -92,13 +92,9 @@
               "target": "Package",
               "version": "[9.0.0, )"
             },
-            "MySql.Data": {
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
-              "version": "[9.1.0, )"
-            },
-            "Pomelo.EntityFrameworkCore.MySql": {
-              "target": "Package",
-              "version": "[9.0.0-preview.2.efcore.9.0.0, )"
+              "version": "[9.0.2, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
@@ -128,7 +124,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

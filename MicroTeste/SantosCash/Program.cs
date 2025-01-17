@@ -1,4 +1,6 @@
+using AutoMapper;
 using Dbcontext;
+using DTOs.Mappings;
 using Microsoft.EntityFrameworkCore;
 using Repositories;
 using Services;
@@ -28,15 +30,22 @@ builder.Services.AddSwaggerGen(options =>
     });
 });
 
-string mySqlConnection = builder.Configuration.GetConnectionString("DefaultConnection");
-builder.Services.AddDbContext<AppDbContext>(options => options.UseMySql(mySqlConnection, ServerVersion.AutoDetect(mySqlConnection)));
+// Adicionado a conexão com o BD Postgres
+string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<AppDbContext>(options => options.UseNpgsql(connectionString));
 
 // Registrando Services com sua implementação
 builder.Services.AddScoped<ItransacoesServices, TransacoesServices>();
 builder.Services.AddScoped<ITransacoesRepository, TransacoesRepository>();
 
-// Adicionado a conexão com o mapeamento AutoMapper e perfil de mapeamento  
+// Adicionado a conexão com o mapeamento AutoMapper e perfil de mapeamento
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+builder.Services.AddAutoMapper(typeof(MappingProfile));
+
+var config = new MapperConfiguration(cfg =>
+{
+    cfg.AddProfile<MappingProfile>(); // Adiciona o perfil que define o mapeamento
+});
 
 var app = builder.Build();
 

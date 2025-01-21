@@ -6,35 +6,34 @@ namespace Repositories;
 
 public class TransacoesRepository : ITransacoesRepository
 {
-    private readonly AppDbContext _context; // Contexto do banco de dados privado
+    private readonly AppDbContext _context;
+
     public TransacoesRepository(AppDbContext context)
     {
         _context = context;
     }
 
-    //Crete
+    // Create
     public async Task<Transacoes> CreateTransacoesAsync(Transacoes transacoes)
     {
-        // Adiciona a transação ao contexto de forma assíncrona
         await _context.Transacoes.AddAsync(transacoes);
-        // Salva as mudanças no banco de dados
         await _context.SaveChangesAsync();
-        // Retorna a transação criada, agora com o Id gerado pelo banco
         return transacoes;
     }
 
-    //Read
+    // Read All
     public async Task<IEnumerable<Transacoes>> GetAll()
     {
-        return await _context.Transacoes.ToListAsync(); // Obtém todas as transações de forma assíncrona
+        return await _context.Transacoes.ToListAsync();
     }
 
+    // Read by Txid
     public async Task<Transacoes> GetTransacoesByIdAsync(string txid)
     {
-        return await _context.Transacoes.FirstOrDefaultAsync(t => t.Txid == txid); // Obtém a transação pelo ID de forma assíncrona
+        return await _context.Transacoes.FirstOrDefaultAsync(t => t.Txid == txid);
     }
 
-    //Update
+    // Update
     public async Task<Transacoes> UpdateTransacoesAsync(Transacoes transacoes)
     {
         var transacaoExistente = await _context.Transacoes.FindAsync(transacoes.Txid);
@@ -43,37 +42,22 @@ public class TransacoesRepository : ITransacoesRepository
             throw new KeyNotFoundException("Transação não encontrada.");
         }
 
-        // Atualiza os campos
-        transacaoExistente.E2E_Id = transacoes.E2E_Id;
-        transacaoExistente.Pagador_Nome = transacoes.Pagador_Nome;
-        transacaoExistente.Pagador_Cpf = transacoes.Pagador_Cpf;
-        transacaoExistente.Pagador_Banco = transacoes.Pagador_Banco;
-        transacaoExistente.Pagador_Agencia = transacoes.Pagador_Agencia;
-        transacaoExistente.Pagador_Conta = transacoes.Pagador_Conta;
-        transacaoExistente.Recebedor_Nome = transacoes.Recebedor_Nome;
-        transacaoExistente.Recebedor_Cpf = transacoes.Recebedor_Cpf;
-        transacaoExistente.Recebedor_Banco = transacoes.Recebedor_Banco;
-        transacaoExistente.Recebedor_Agencia = transacoes.Recebedor_Agencia;
-        transacaoExistente.Recebedor_Conta = transacoes.Recebedor_Conta;
-
-        _context.Transacoes.Update(transacaoExistente);
+        _context.Entry(transacaoExistente).CurrentValues.SetValues(transacoes);
         await _context.SaveChangesAsync();
-
         return transacaoExistente;
     }
 
-    //Delete
+    // Delete
     public async Task<Transacoes> DeleteTransacoesAsync(string txid)
     {
         var transacao = await _context.Transacoes.FirstOrDefaultAsync(t => t.Txid == txid);
         if (transacao == null)
         {
-            return null; // Retorna null se a transação não for encontrada
+            throw new KeyNotFoundException("Transação não encontrada.");
         }
 
-        _context.Transacoes.Remove(transacao); // Remove a transação do contexto
-        await _context.SaveChangesAsync(); // Salva as mudanças no banco de dados de forma assíncrona
-
-        return transacao; // Retorna a transação removida
+        _context.Transacoes.Remove(transacao);
+        await _context.SaveChangesAsync();
+        return transacao;
     }
 }

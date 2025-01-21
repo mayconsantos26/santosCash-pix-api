@@ -2,6 +2,7 @@
 using DTOs;
 using Repositories;
 using Helpers;
+using MicroTeste.Models;
 
 namespace Services;
 
@@ -19,20 +20,19 @@ public class TransacoesServices : ITransacoesServices
     // Create
     public async Task<TransacoesCreateResponseDTO> CreateTransacoesDTOAsync(TransacoesCreateRequestDTO request)
     {
-        if (request.Valor <= 0)
+        Transacoes transacao = _mapper.Map<Transacoes>(request);
+        transacao.Txid = PixHelpers.GerarTxid();
+
+        try
         {
-            throw new ArgumentException("O valor da transação deve ser maior que zero.");
+            var createdEntity = await _transacoesRepository.CreateTransacoesAsync(transacao);
+            var returnEntity = _mapper.Map<TransacoesCreateResponseDTO>(createdEntity);
+            return returnEntity;
         }
-
-        // Gerar E2E ID (usando seu helper PixHelpers)
-        var e2eId = PixHelpers.GerarEndToEndId(DateTime.Now);
-
-        var transacoesCreateDTO = _mapper.Map<MicroTeste.Models.Transacoes>(request);
-        transacoesCreateDTO.E2E_Id = e2eId;  // Atribui o ID gerado ao DTO
-
-        var transacaoEntity = _mapper.Map<MicroTeste.Models.Transacoes>(transacoesCreateDTO);
-        var createdEntity = await _transacoesRepository.CreateTransacoesAsync(transacaoEntity);
-        return _mapper.Map<TransacoesCreateResponseDTO>(createdEntity);
+        catch (Exception ex)
+        {
+            throw new Exception("Erro ao criar transação.", ex);
+        }
     }
 
     // Read All
@@ -42,35 +42,49 @@ public class TransacoesServices : ITransacoesServices
         return _mapper.Map<IEnumerable<TransacoesDTO>>(transacoesEntity);
     }
 
-    // Read Txid
-    // Read Txid
+    // Read By Txid
     public async Task<TransacoesDTO> GetTransacoesDTOByTxidAsync(string txid)
     {
-        var transacaoEntity = await _transacoesRepository.GetTransacoesByIdAsync(txid); // Corrige o nome do método no repositório
+        var transacaoEntity = await _transacoesRepository.GetTransacoesByIdAsync(txid);
         if (transacaoEntity == null)
         {
-            throw new KeyNotFoundException("Transação não encontrada."); // Mensagem de erro permanece a mesma
+            throw new KeyNotFoundException("Transação não encontrada.");
         }
-        return _mapper.Map<TransacoesDTO>(transacaoEntity); // Retorna o mapeamento do resultado
-    }
 
+        return _mapper.Map<TransacoesDTO>(transacaoEntity);
+    }
 
     // Update
     public async Task<TransacoesUpdateDTO> UpdateTransacoesDTOAsync(TransacoesUpdateDTO transacoesUpdateDTO)
     {
-        var transacaoEntity = _mapper.Map<MicroTeste.Models.Transacoes>(transacoesUpdateDTO);
-        var updatedEntity = await _transacoesRepository.UpdateTransacoesAsync(transacaoEntity);
+        var transacaoExistente = await _transacoesRepository.GetTransacoesByIdAsync(transacoesUpdateDTO.Txid);
+        if (transacaoExistente == null)
+        {
+            throw new KeyNotFoundException("Transação não encontrada.");
+        }
+
+        if (!CpfValidator.IsValidCpf(transacoesUpdateDTO.Pagador_Cpf) ||
+            !CpfValidator.IsValidCpf(transacoesUpdateDTO.Recebedor_Cpf))
+        {
+            throw new ArgumentException("Um ou mais CPFs fornecidos são inválidos.");
+        }
+
+        var transacaoAtualizada = _mapper.Map(transacoesUpdateDTO, transacaoExistente);
+        var updatedEntity = await _transacoesRepository.UpdateTransacoesAsync(transacaoAtualizada);
         return _mapper.Map<TransacoesUpdateDTO>(updatedEntity);
     }
 
     // Delete
     public async Task<TransacoesDTO> DeleteTransacoesDTOAsync(string txid)
     {
-        var transacaoEntity = await _transacoesRepository.DeleteTransacoesAsync(txid);
-        if (transacaoEntity == null)
+        try
         {
-            throw new KeyNotFoundException("Transação não encontrada.");
+            var transacaoRemovida = await _transacoesRepository.DeleteTransacoesAsync(txid);
+            return _mapper.Map<TransacoesDTO>(transacaoRemovida);
         }
-        return _mapper.Map<TransacoesDTO>(transacaoEntity);
+        catch (KeyNotFoundException)
+        {
+            throw;
+        }
     }
 }

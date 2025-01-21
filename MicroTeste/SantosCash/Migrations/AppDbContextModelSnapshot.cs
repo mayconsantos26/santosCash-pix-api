@@ -66,7 +66,8 @@ namespace SantosCash.Migrations
                         .HasColumnName("id");
 
                     b.Property<DateTime>("Data_Transacao")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("data_transacao");
 
                     b.Property<string>("E2E_Id")
                         .IsRequired()

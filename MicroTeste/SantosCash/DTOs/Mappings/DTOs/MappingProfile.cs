@@ -7,21 +7,20 @@ public class MappingProfile : Profile
 {
     public MappingProfile()
     {
-        // Mapeia TransacoesDTO para Transacoes
-        CreateMap<TransacoesDTO, Transacoes>().ReverseMap();
+        // Mapeamento de criação
+        CreateMap<TransacoesCreateRequestDTO, Transacoes>()
+            .ForMember(dest => dest.E2E_Id, opt => opt.Ignore()); // Ignorar E2E_Id, pois será gerado
 
-        // Mapeia Transacoes para TransacoesDTO
-        CreateMap<Transacoes, TransacoesDTO>().ReverseMap();
+        // Mapeamento de atualização
+        CreateMap<TransacoesUpdateDTO, Transacoes>();
 
-        // Mapeamento da entidade Transacoes para TransacoesDTO
-        CreateMap<Transacoes, TransacoesDTO>().ReverseMap();
+        // Mapeamento para leitura
+        CreateMap<Transacoes, TransacoesDTO>();
 
-        // Mapeamento para criação de transação (Request para Entidade)
-        CreateMap<TransacoesCreateRequestDTO, Transacoes>().ReverseMap();
-
-        // Mapeamento para resposta de transação (Entidade para Response)
-        CreateMap<Transacoes, TransacoesCreateResponseDTO>().ReverseMap();
+        // Mapeamento para resposta de criação
+        CreateMap<Transacoes, TransacoesCreateResponseDTO>();
     }
 }
+
 
         

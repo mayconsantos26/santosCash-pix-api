@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace SantosCash.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250117141752_Keys")]
+    [Migration("20250121144513_Keys")]
     partial class Keys
     {
         /// <inheritdoc />
@@ -69,7 +69,8 @@ namespace SantosCash.Migrations
                         .HasColumnName("id");
 
                     b.Property<DateTime>("Data_Transacao")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("data_transacao");
 
                     b.Property<string>("E2E_Id")
                         .IsRequired()

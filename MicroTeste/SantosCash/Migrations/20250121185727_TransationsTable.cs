@@ -1,12 +1,13 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
 namespace SantosCash.Migrations
 {
     /// <inheritdoc />
-    public partial class Keys : Migration
+    public partial class TransationsTable : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -15,7 +16,8 @@ namespace SantosCash.Migrations
                 name: "keys",
                 columns: table => new
                 {
-                    id = table.Column<string>(type: "text", nullable: false),
+                    id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     key = table.Column<string>(type: "character varying(64)", maxLength: 64, nullable: false),
                     nome = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
                     cnpj = table.Column<string>(type: "character varying(14)", maxLength: 14, nullable: false),
@@ -30,7 +32,8 @@ namespace SantosCash.Migrations
                 name: "transacoes",
                 columns: table => new
                 {
-                    id = table.Column<string>(type: "text", nullable: false),
+                    id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     txid = table.Column<string>(type: "character varying(35)", maxLength: 35, nullable: false),
                     e2e_id = table.Column<string>(type: "character varying(64)", maxLength: 64, nullable: false),
                     pagador_nome = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),

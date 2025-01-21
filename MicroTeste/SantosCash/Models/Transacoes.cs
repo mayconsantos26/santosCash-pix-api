@@ -8,8 +8,7 @@ public class Transacoes
 {
     [Key]
     [Column("id")]
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)] // Gera o ID automaticamente no banco
-    public string? Id { get; set; }
+    public int? Id { get; set; }
 
     [Required]
     [Column("txid")]
@@ -68,7 +67,7 @@ public class Transacoes
 
     [Required]
     [Column("data_transacao")]
-    public DateTime Data_Transacao { get; set; } // Data e hora da transação
+    public DateTime Data_Transacao { get; set; } = DateTime.UtcNow; // Data e hora da transação
 }
 
 

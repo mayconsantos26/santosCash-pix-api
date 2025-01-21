@@ -8,9 +8,8 @@ public class MappingProfile : Profile
     public MappingProfile()
     {
         // Mapeamento de criação
-        CreateMap<TransacoesCreateRequestDTO, Transacoes>()
-            .ForMember(dest => dest.E2E_Id, opt => opt.Ignore()); // Ignorar E2E_Id, pois será gerado
-
+        CreateMap<TransacoesCreateRequestDTO, Transacoes>();
+        
         // Mapeamento de atualização
         CreateMap<TransacoesUpdateDTO, Transacoes>();
 

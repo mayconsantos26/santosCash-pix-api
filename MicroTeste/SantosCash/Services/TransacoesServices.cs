@@ -22,17 +22,11 @@ public class TransacoesServices : ITransacoesServices
     {
         Transacoes transacao = _mapper.Map<Transacoes>(request);
         transacao.Txid = PixHelpers.GerarTxid();
+        transacao.Data_Transacao = DateTime.Now;
 
-        try
-        {
-            var createdEntity = await _transacoesRepository.CreateTransacoesAsync(transacao);
+        var createdEntity = await _transacoesRepository.CreateTransacoesAsync(transacao);
             var returnEntity = _mapper.Map<TransacoesCreateResponseDTO>(createdEntity);
             return returnEntity;
-        }
-        catch (Exception ex)
-        {
-            throw new Exception("Erro ao criar transação.", ex);
-        }
     }
 
     // Read All
@@ -45,7 +39,7 @@ public class TransacoesServices : ITransacoesServices
     // Read By Txid
     public async Task<TransacoesDTO> GetTransacoesDTOByTxidAsync(string txid)
     {
-        var transacaoEntity = await _transacoesRepository.GetTransacoesByIdAsync(txid);
+        var transacaoEntity = await _transacoesRepository.GetTransacoesByTxidAsync(txid);
         if (transacaoEntity == null)
         {
             throw new KeyNotFoundException("Transação não encontrada.");
@@ -57,7 +51,7 @@ public class TransacoesServices : ITransacoesServices
     // Update
     public async Task<TransacoesUpdateDTO> UpdateTransacoesDTOAsync(TransacoesUpdateDTO transacoesUpdateDTO)
     {
-        var transacaoExistente = await _transacoesRepository.GetTransacoesByIdAsync(transacoesUpdateDTO.Txid);
+        var transacaoExistente = await _transacoesRepository.GetTransacoesByTxidAsync(transacoesUpdateDTO.Txid);
         if (transacaoExistente == null)
         {
             throw new KeyNotFoundException("Transação não encontrada.");

@@ -28,7 +28,7 @@ public class TransacoesRepository : ITransacoesRepository
     }
 
     // Read by Txid
-    public async Task<Transacoes> GetTransacoesByIdAsync(string txid)
+    public async Task<Transacoes> GetTransacoesByTxidAsync(string txid)
     {
         return await _context.Transacoes.FirstOrDefaultAsync(t => t.Txid == txid);
     }

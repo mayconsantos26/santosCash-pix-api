@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace SantosCash.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250121144513_Keys")]
-    partial class Keys
+    [Migration("20250121185727_TransationsTable")]
+    partial class TransationsTable
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,10 +27,12 @@ namespace SantosCash.Migrations
 
             modelBuilder.Entity("MicroTeste.Models.Keys", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("text")
+                        .HasColumnType("integer")
                         .HasColumnName("id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("ApiKey")
                         .IsRequired()
@@ -63,10 +65,12 @@ namespace SantosCash.Migrations
 
             modelBuilder.Entity("MicroTeste.Models.Transacoes", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("text")
+                        .HasColumnType("integer")
                         .HasColumnName("id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("Data_Transacao")
                         .HasColumnType("timestamp with time zone")

@@ -8,7 +8,7 @@ public class Transacoes
 {
     [Key]
     [Column("id")]
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)] // Gera o ID automaticamente no banco
     public string? Id { get; set; }
 
     [Required]
@@ -26,7 +26,6 @@ public class Transacoes
     [Column("pagador_nome")]
     public string? Pagador_Nome { get; set; } // Nome do pagador
 
-    [Required]
     [Column("pagador_documento")]
     [StringLength(11, ErrorMessage = "O CPF do pagador deve ter exatamente 11 dígitos.")]
     public string? Pagador_Cpf { get; set; } // CPF do pagador (11 Digitos)
@@ -47,7 +46,6 @@ public class Transacoes
     [StringLength(100)]
     public string? Recebedor_Nome { get; set; } // Nome do recebedor
 
-    [Required]
     [Column("recebedor_documento")]
     [StringLength(11, ErrorMessage = "O CPF do Recebedor deve ter exatamente 11 dígitos.")]
     public string? Recebedor_Cpf { get; set; } // CPF do recebedor (11 Digitos)
@@ -66,8 +64,10 @@ public class Transacoes
 
     [Required]
     [Column("valor", TypeName = "decimal(10,2)")]
+    [Range(0.01 , double.MaxValue, ErrorMessage = "O valor da transação deve ser maior que zero.")]
     public decimal Valor { get; set; } // Valor da transação
 
+    [Required]
     [Column("data_transacao")]
     public DateTime Data_Transacao { get; set; } // Data e hora da transação
 }

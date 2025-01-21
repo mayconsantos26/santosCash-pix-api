@@ -1,4 +1,4 @@
-﻿namespace MicroTeste.Helpers;
+﻿namespace Helpers;
 
 public static class Defaults
 {

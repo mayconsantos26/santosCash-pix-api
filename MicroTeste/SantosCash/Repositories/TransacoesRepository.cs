@@ -15,9 +15,12 @@ public class TransacoesRepository : ITransacoesRepository
     //Crete
     public async Task<Transacoes> CreateTransacoesAsync(Transacoes transacoes)
     {
-        await _context.Transacoes.AddAsync(transacoes); // Adiciona a transação ao contexto de forma assíncrona
-        await _context.SaveChangesAsync(); // Salva as mudanças no banco de dados de forma assíncrona
-        return transacoes; // Retorna a transação criada
+        // Adiciona a transação ao contexto de forma assíncrona
+        await _context.Transacoes.AddAsync(transacoes);
+        // Salva as mudanças no banco de dados
+        await _context.SaveChangesAsync();
+        // Retorna a transação criada, agora com o Id gerado pelo banco
+        return transacoes;
     }
 
     //Read
@@ -26,15 +29,15 @@ public class TransacoesRepository : ITransacoesRepository
         return await _context.Transacoes.ToListAsync(); // Obtém todas as transações de forma assíncrona
     }
 
-    public async Task<Transacoes> GetTransacoesByIdAsync(string id)
+    public async Task<Transacoes> GetTransacoesByIdAsync(string txid)
     {
-        return await _context.Transacoes.FirstOrDefaultAsync(t => t.Id == id); // Obtém a transação pelo ID de forma assíncrona
+        return await _context.Transacoes.FirstOrDefaultAsync(t => t.Txid == txid); // Obtém a transação pelo ID de forma assíncrona
     }
 
     //Update
     public async Task<Transacoes> UpdateTransacoesAsync(Transacoes transacoes)
     {
-        var transacaoExistente = await _context.Transacoes.FindAsync(transacoes.Id);
+        var transacaoExistente = await _context.Transacoes.FindAsync(transacoes.Txid);
         if (transacaoExistente == null)
         {
             throw new KeyNotFoundException("Transação não encontrada.");
@@ -60,9 +63,9 @@ public class TransacoesRepository : ITransacoesRepository
     }
 
     //Delete
-    public async Task<Transacoes> DeleteTransacoesAsync(string id)
+    public async Task<Transacoes> DeleteTransacoesAsync(string txid)
     {
-        var transacao = await _context.Transacoes.FirstOrDefaultAsync(t => t.Id == id); // Obtém a transação pelo ID de forma assíncrona
+        var transacao = await _context.Transacoes.FirstOrDefaultAsync(t => t.Txid == txid);
         if (transacao == null)
         {
             return null; // Retorna null se a transação não for encontrada

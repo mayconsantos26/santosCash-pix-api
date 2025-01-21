@@ -399,7 +399,6 @@ C:\Users\fastc\OneDrive\Documentos\Repositorios_Micro\aulas-backend\MicroTeste\S
 C:\Users\fastc\OneDrive\Documentos\Repositorios_Micro\aulas-backend\MicroTeste\SantosCash\obj\Debug\net9.0\ref\SantosCash.dll
 C:\Users\Fastcash Analista\Documents\GitHub\aulas-backend\MicroTeste\SantosCash\bin\Debug\net9.0\appsettings.Development.json
 C:\Users\Fastcash Analista\Documents\GitHub\aulas-backend\MicroTeste\SantosCash\bin\Debug\net9.0\appsettings.json
-C:\Users\Fastcash Analista\Documents\GitHub\aulas-backend\MicroTeste\SantosCash\bin\Debug\net9.0\SantosCash.staticwebassets.runtime.json
 C:\Users\Fastcash Analista\Documents\GitHub\aulas-backend\MicroTeste\SantosCash\bin\Debug\net9.0\SantosCash.staticwebassets.endpoints.json
 C:\Users\Fastcash Analista\Documents\GitHub\aulas-backend\MicroTeste\SantosCash\bin\Debug\net9.0\SantosCash.exe
 C:\Users\Fastcash Analista\Documents\GitHub\aulas-backend\MicroTeste\SantosCash\bin\Debug\net9.0\SantosCash.deps.json
@@ -526,14 +525,8 @@ C:\Users\Fastcash Analista\Documents\GitHub\aulas-backend\MicroTeste\SantosCash\
 C:\Users\Fastcash Analista\Documents\GitHub\aulas-backend\MicroTeste\SantosCash\obj\Debug\net9.0\SantosCash.csproj.CoreCompileInputs.cache
 C:\Users\Fastcash Analista\Documents\GitHub\aulas-backend\MicroTeste\SantosCash\obj\Debug\net9.0\SantosCash.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\Fastcash Analista\Documents\GitHub\aulas-backend\MicroTeste\SantosCash\obj\Debug\net9.0\SantosCash.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\Fastcash Analista\Documents\GitHub\aulas-backend\MicroTeste\SantosCash\obj\Debug\net9.0\SantosCash.RazorAssemblyInfo.cache
-C:\Users\Fastcash Analista\Documents\GitHub\aulas-backend\MicroTeste\SantosCash\obj\Debug\net9.0\SantosCash.RazorAssemblyInfo.cs
 C:\Users\Fastcash Analista\Documents\GitHub\aulas-backend\MicroTeste\SantosCash\obj\Debug\net9.0\SantosCash.sourcelink.json
-C:\Users\Fastcash Analista\Documents\GitHub\aulas-backend\MicroTeste\SantosCash\obj\Debug\net9.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
 C:\Users\Fastcash Analista\Documents\GitHub\aulas-backend\MicroTeste\SantosCash\obj\Debug\net9.0\scopedcss\bundle\SantosCash.styles.css
-C:\Users\Fastcash Analista\Documents\GitHub\aulas-backend\MicroTeste\SantosCash\obj\Debug\net9.0\scopedcss\projectbundle\SantosCash.bundle.scp.css
-C:\Users\Fastcash Analista\Documents\GitHub\aulas-backend\MicroTeste\SantosCash\obj\Debug\net9.0\compressed\0kmne6usdv-pfs6xkr8vg.gz
-C:\Users\Fastcash Analista\Documents\GitHub\aulas-backend\MicroTeste\SantosCash\obj\Debug\net9.0\compressed\6mktcuy6gl-pfs6xkr8vg.gz
 C:\Users\Fastcash Analista\Documents\GitHub\aulas-backend\MicroTeste\SantosCash\obj\Debug\net9.0\staticwebassets.build.json
 C:\Users\Fastcash Analista\Documents\GitHub\aulas-backend\MicroTeste\SantosCash\obj\Debug\net9.0\staticwebassets.development.json
 C:\Users\Fastcash Analista\Documents\GitHub\aulas-backend\MicroTeste\SantosCash\obj\Debug\net9.0\staticwebassets.build.endpoints.json

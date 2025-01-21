@@ -22,11 +22,6 @@ builder.Services.AddSwaggerGen(options =>
         Title = "Minha API",
         Version = "v1",
         Description = "Exemplo de configuração do Swagger em ASP.NET Core",
-        Contact = new Microsoft.OpenApi.Models.OpenApiContact
-        {
-            Name = "Seu Nome",
-            Email = "seuemail@exemplo.com"
-        }
     });
 });
 
@@ -35,7 +30,7 @@ string connectionString = builder.Configuration.GetConnectionString("DefaultConn
 builder.Services.AddDbContext<AppDbContext>(options => options.UseNpgsql(connectionString));
 
 // Registrando Services com sua implementação
-builder.Services.AddScoped<ItransacoesServices, TransacoesServices>();
+builder.Services.AddScoped<ITransacoesServices, TransacoesServices>();
 builder.Services.AddScoped<ITransacoesRepository, TransacoesRepository>();
 
 // Adicionado a conexão com o mapeamento AutoMapper e perfil de mapeamento

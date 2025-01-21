@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace MicroTeste.Helpers
+namespace Helpers
 {
     public static class PixHelpers
     {

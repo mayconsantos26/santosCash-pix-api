@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
 using DTOs;
-using MicroTeste.Models;
 using Repositories;
+using Helpers;
 
 namespace Services;
 
-public class TransacoesServices : ItransacoesServices
+public class TransacoesServices : ITransacoesServices
 {
     private readonly ITransacoesRepository _transacoesRepository;
     private readonly IMapper _mapper;
@@ -15,35 +15,62 @@ public class TransacoesServices : ItransacoesServices
         _transacoesRepository = transacoesRepository;
         _mapper = mapper;
     }
-    public async Task<TransacoesDTO> CreateTransacoesDTOAsync(TransacoesDTO transacoesDTO)
+
+    // Create
+    public async Task<TransacoesCreateResponseDTO> CreateTransacoesDTOAsync(TransacoesCreateRequestDTO request)
     {
-        var transacoesEntity = _mapper.Map<Transacoes>(transacoesDTO);
-        var createdEntity = await _transacoesRepository.CreateTransacoesAsync(transacoesEntity);
-        return _mapper.Map<TransacoesDTO>(createdEntity);
+        if (request.Valor <= 0)
+        {
+            throw new ArgumentException("O valor da transação deve ser maior que zero.");
+        }
+
+        // Gerar E2E ID (usando seu helper PixHelpers)
+        var e2eId = PixHelpers.GerarEndToEndId(DateTime.Now);
+
+        var transacoesCreateDTO = _mapper.Map<MicroTeste.Models.Transacoes>(request);
+        transacoesCreateDTO.E2E_Id = e2eId;  // Atribui o ID gerado ao DTO
+
+        var transacaoEntity = _mapper.Map<MicroTeste.Models.Transacoes>(transacoesCreateDTO);
+        var createdEntity = await _transacoesRepository.CreateTransacoesAsync(transacaoEntity);
+        return _mapper.Map<TransacoesCreateResponseDTO>(createdEntity);
     }
 
+    // Read All
     public async Task<IEnumerable<TransacoesDTO>> GetAll()
     {
         var transacoesEntity = await _transacoesRepository.GetAll();
         return _mapper.Map<IEnumerable<TransacoesDTO>>(transacoesEntity);
     }
 
-    public async Task<TransacoesDTO> GetTransacoesDTOByIdAsync(string id)
+    // Read Txid
+    // Read Txid
+    public async Task<TransacoesDTO> GetTransacoesDTOByTxidAsync(string txid)
     {
-        var transacoesEntity = await _transacoesRepository.GetTransacoesByIdAsync(id);
-        return _mapper.Map<TransacoesDTO>(transacoesEntity);
+        var transacaoEntity = await _transacoesRepository.GetTransacoesByIdAsync(txid); // Corrige o nome do método no repositório
+        if (transacaoEntity == null)
+        {
+            throw new KeyNotFoundException("Transação não encontrada."); // Mensagem de erro permanece a mesma
+        }
+        return _mapper.Map<TransacoesDTO>(transacaoEntity); // Retorna o mapeamento do resultado
     }
 
-    public async Task<TransacoesDTO> UpdateTransacoesDTOAsync(TransacoesDTO transacoesDTO)
+
+    // Update
+    public async Task<TransacoesUpdateDTO> UpdateTransacoesDTOAsync(TransacoesUpdateDTO transacoesUpdateDTO)
     {
-        var transacoesEntity = _mapper.Map<Transacoes>(transacoesDTO);
-        var updatedEntity = await _transacoesRepository.UpdateTransacoesAsync(transacoesEntity);
-        return _mapper.Map<TransacoesDTO>(updatedEntity);
+        var transacaoEntity = _mapper.Map<MicroTeste.Models.Transacoes>(transacoesUpdateDTO);
+        var updatedEntity = await _transacoesRepository.UpdateTransacoesAsync(transacaoEntity);
+        return _mapper.Map<TransacoesUpdateDTO>(updatedEntity);
     }
 
-    public async Task<TransacoesDTO> DeleteTransacoesDTOAsync(string id)
+    // Delete
+    public async Task<TransacoesDTO> DeleteTransacoesDTOAsync(string txid)
     {
-        var transacoesEntity = await _transacoesRepository.DeleteTransacoesAsync(id);
-        return _mapper.Map<TransacoesDTO>(transacoesEntity);
+        var transacaoEntity = await _transacoesRepository.DeleteTransacoesAsync(txid);
+        if (transacaoEntity == null)
+        {
+            throw new KeyNotFoundException("Transação não encontrada.");
+        }
+        return _mapper.Map<TransacoesDTO>(transacaoEntity);
     }
 }

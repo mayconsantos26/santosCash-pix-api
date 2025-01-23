@@ -11,7 +11,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Configuração da conexão com o BD MySQL
 builder.Services.AddControllersWithViews(); // MVC
-builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies()); // mapeamento de entidades
 
 builder.Services.AddSwaggerGen(); // Adiciona o Swagger
 

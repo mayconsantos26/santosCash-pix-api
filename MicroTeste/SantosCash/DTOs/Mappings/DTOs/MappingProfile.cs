@@ -8,16 +8,16 @@ public class MappingProfile : Profile
     public MappingProfile()
     {
         // Mapeamento de criação
-        CreateMap<TransacoesCreateRequestDTO, Transacoes>();
+        CreateMap<TransacoesCreateRequestDTO, Transacoes>().ReverseMap();
         
         // Mapeamento de atualização
-        CreateMap<TransacoesUpdateDTO, Transacoes>();
+        CreateMap<TransacoesUpdateDTO, Transacoes>().ReverseMap();
 
         // Mapeamento para leitura
-        CreateMap<Transacoes, TransacoesDTO>();
+        CreateMap<Transacoes, TransacoesDTO>().ReverseMap();
 
         // Mapeamento para resposta de criação
-        CreateMap<Transacoes, TransacoesCreateResponseDTO>();
+        CreateMap<Transacoes, TransacoesCreateResponseDTO>().ReverseMap();
     }
 }
 

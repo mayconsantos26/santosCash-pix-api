@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace SantosCash.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250121185727_TransationsTable")]
-    partial class TransationsTable
+    [Migration("20250124142821_TransationsWork")]
+    partial class TransationsWork
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -77,67 +77,56 @@ namespace SantosCash.Migrations
                         .HasColumnName("data_transacao");
 
                     b.Property<string>("E2E_Id")
-                        .IsRequired()
                         .HasMaxLength(64)
                         .HasColumnType("character varying(64)")
                         .HasColumnName("e2e_id");
 
                     b.Property<string>("Pagador_Agencia")
-                        .IsRequired()
                         .HasMaxLength(6)
                         .HasColumnType("character varying(6)")
                         .HasColumnName("pagador_agencia");
 
                     b.Property<string>("Pagador_Banco")
-                        .IsRequired()
                         .HasMaxLength(8)
                         .HasColumnType("character varying(8)")
                         .HasColumnName("pagador_banco");
 
                     b.Property<string>("Pagador_Conta")
-                        .IsRequired()
                         .HasMaxLength(10)
                         .HasColumnType("character varying(10)")
                         .HasColumnName("pagador_conta");
 
                     b.Property<string>("Pagador_Cpf")
-                        .IsRequired()
                         .HasMaxLength(11)
                         .HasColumnType("character varying(11)")
                         .HasColumnName("pagador_documento");
 
                     b.Property<string>("Pagador_Nome")
-                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)")
                         .HasColumnName("pagador_nome");
 
                     b.Property<string>("Recebedor_Agencia")
-                        .IsRequired()
                         .HasMaxLength(6)
                         .HasColumnType("character varying(6)")
                         .HasColumnName("recebedor_agencia");
 
                     b.Property<string>("Recebedor_Banco")
-                        .IsRequired()
                         .HasMaxLength(8)
                         .HasColumnType("character varying(8)")
                         .HasColumnName("recebedor_banco");
 
                     b.Property<string>("Recebedor_Conta")
-                        .IsRequired()
                         .HasMaxLength(10)
                         .HasColumnType("character varying(10)")
                         .HasColumnName("recebedor_conta");
 
                     b.Property<string>("Recebedor_Cpf")
-                        .IsRequired()
                         .HasMaxLength(11)
                         .HasColumnType("character varying(11)")
                         .HasColumnName("recebedor_documento");
 
                     b.Property<string>("Recebedor_Nome")
-                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)")
                         .HasColumnName("recebedor_nome");

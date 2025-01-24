@@ -7,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace SantosCash.Migrations
 {
     /// <inheritdoc />
-    public partial class TransationsTable : Migration
+    public partial class TransationsWork : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -35,17 +35,17 @@ namespace SantosCash.Migrations
                     id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     txid = table.Column<string>(type: "character varying(35)", maxLength: 35, nullable: false),
-                    e2e_id = table.Column<string>(type: "character varying(64)", maxLength: 64, nullable: false),
-                    pagador_nome = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
-                    pagador_documento = table.Column<string>(type: "character varying(11)", maxLength: 11, nullable: false),
-                    pagador_banco = table.Column<string>(type: "character varying(8)", maxLength: 8, nullable: false),
-                    pagador_agencia = table.Column<string>(type: "character varying(6)", maxLength: 6, nullable: false),
-                    pagador_conta = table.Column<string>(type: "character varying(10)", maxLength: 10, nullable: false),
-                    recebedor_nome = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
-                    recebedor_documento = table.Column<string>(type: "character varying(11)", maxLength: 11, nullable: false),
-                    recebedor_banco = table.Column<string>(type: "character varying(8)", maxLength: 8, nullable: false),
-                    recebedor_agencia = table.Column<string>(type: "character varying(6)", maxLength: 6, nullable: false),
-                    recebedor_conta = table.Column<string>(type: "character varying(10)", maxLength: 10, nullable: false),
+                    e2e_id = table.Column<string>(type: "character varying(64)", maxLength: 64, nullable: true),
+                    pagador_nome = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
+                    pagador_documento = table.Column<string>(type: "character varying(11)", maxLength: 11, nullable: true),
+                    pagador_banco = table.Column<string>(type: "character varying(8)", maxLength: 8, nullable: true),
+                    pagador_agencia = table.Column<string>(type: "character varying(6)", maxLength: 6, nullable: true),
+                    pagador_conta = table.Column<string>(type: "character varying(10)", maxLength: 10, nullable: true),
+                    recebedor_nome = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
+                    recebedor_documento = table.Column<string>(type: "character varying(11)", maxLength: 11, nullable: true),
+                    recebedor_banco = table.Column<string>(type: "character varying(8)", maxLength: 8, nullable: true),
+                    recebedor_agencia = table.Column<string>(type: "character varying(6)", maxLength: 6, nullable: true),
+                    recebedor_conta = table.Column<string>(type: "character varying(10)", maxLength: 10, nullable: true),
                     valor = table.Column<decimal>(type: "numeric(10,2)", precision: 10, scale: 2, nullable: false),
                     data_transacao = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },

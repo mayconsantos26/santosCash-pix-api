@@ -8,7 +8,7 @@ public class KeysDTO
     [Key]
     [Column("id")]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public string? Id { get; set; } // Chave Primária
+    public int? Id { get; set; } // Chave Primária
 
     [Column("key")]
     [StringLength(64)]

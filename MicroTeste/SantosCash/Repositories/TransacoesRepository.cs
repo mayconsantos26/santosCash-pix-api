@@ -27,7 +27,7 @@ public class TransacoesRepository : ITransacoesRepository
             throw new ArgumentNullException(nameof(txid));
         }
 
-        return await _context.Transacoes.FindAsync(txid);
+        return await _context.Transacoes.FirstOrDefaultAsync(t => t.Txid == txid);
     }
 
     // Create
@@ -38,7 +38,7 @@ public class TransacoesRepository : ITransacoesRepository
             throw new ArgumentNullException(nameof(transacoes));
         }
 
-        var existingTransacao = await _context.Transacoes.FindAsync(transacoes.Txid);
+        var existingTransacao = await _context.Transacoes.FirstOrDefaultAsync(t => t.Txid == transacoes.Txid);
         if (existingTransacao != null)
         {
             throw new InvalidOperationException("Transação já existe.");
@@ -57,7 +57,7 @@ public class TransacoesRepository : ITransacoesRepository
             throw new ArgumentNullException(nameof(transacoes));
         }
 
-        var existingTransacao = await _context.Transacoes.FindAsync(transacoes.Txid);
+        var existingTransacao = await _context.Transacoes.FirstOrDefaultAsync(t => t.Txid == transacoes.Txid);
         if (existingTransacao == null)
         {
             throw new InvalidOperationException("Transação não encontrada.");
@@ -76,7 +76,7 @@ public class TransacoesRepository : ITransacoesRepository
             throw new ArgumentNullException(nameof(txid));
         }
 
-        var transacao = await _context.Transacoes.FindAsync(txid);
+        var transacao = await _context.Transacoes.FirstOrDefaultAsync(t => t.Txid == txid);
         if (transacao == null)
         {
             throw new InvalidOperationException("Transação não encontrada.");

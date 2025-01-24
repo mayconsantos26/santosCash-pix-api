@@ -28,12 +28,12 @@ public class TransacoesServices : ITransacoesServices
     public async Task<TransacoesDTO> GetTransacoesDTOByTxidAsync(string txid)
     {
         var transacaoEntity = await _transacoesRepository.GetByTxidAsync(txid);
-        if (transacaoEntity == null)
+        if (transacaoEntity != null)
         {
-            throw new KeyNotFoundException("Transação não encontrada.");
+            return _mapper.Map<TransacoesDTO>(transacaoEntity);
         }
 
-        return _mapper.Map<TransacoesDTO>(transacaoEntity);
+        throw new KeyNotFoundException("Transação não encontrada.");
     }
 
     // Create
@@ -63,10 +63,20 @@ public class TransacoesServices : ITransacoesServices
             throw new ArgumentException("Um ou mais CPFs fornecidos são inválidos.");
         }
 
+        // Mapeia as atualizações do DTO para a entidade existente
         var transacaoAtualizada = _mapper.Map(transacoesUpdateDTO, transacaoExistente);
+
+        // Garante a atualização manual das propriedades
+        transacaoAtualizada.E2E_Id = PixHelpers.GerarEndToEndId(DateTime.Now);
+        transacaoAtualizada.Data_Transacao = DateTime.Now;
+
+        // Atualiza no repositório
         var updatedEntity = await _transacoesRepository.UpdateAsync(transacaoAtualizada);
+
+        // Retorna o DTO atualizado
         return _mapper.Map<TransacoesDTO>(updatedEntity);
     }
+
 
     // Delete
     public async Task<TransacoesDTO> DeleteTransacoesDTOAsync(string txid)

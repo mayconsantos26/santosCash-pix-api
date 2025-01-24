@@ -5,11 +5,6 @@ namespace DTOs;
 
 public class TransacoesUpdateDTO
 {
-    [Required]
-    [Column("e2e_id")]
-    [StringLength(64)]
-    public string? E2E_Id { get; set; } // Identificador End-to-End
-
     [Column("txid")]
     [StringLength(35, MinimumLength = 26, ErrorMessage = "O Txid deve ter entre 26 e 35 caracteres.")]
     [RegularExpression("^[A-Za-z0-9]*$", ErrorMessage = "O Txid deve ter apenas letras e números.")]

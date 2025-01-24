@@ -66,8 +66,8 @@ public class Transacoes
     public decimal Valor { get; set; } // Valor da transação
 
     [Required]
-    [Column("data_transacao")]
-    public DateTime Data_Transacao { get; set; } = DateTime.UtcNow; // Data e hora da transação
+    [Column("data_transacao", TypeName = "timestamp with time zone")] // Tipo exclusivo para PostGreSQL
+    public DateTime Data_Transacao { get; set; } // Data e hora da transação
 }
 
 

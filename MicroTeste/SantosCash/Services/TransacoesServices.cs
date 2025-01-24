@@ -77,7 +77,6 @@ public class TransacoesServices : ITransacoesServices
         return _mapper.Map<TransacoesDTO>(updatedEntity);
     }
 
-
     // Delete
     public async Task<TransacoesDTO> DeleteTransacoesDTOAsync(string txid)
     {

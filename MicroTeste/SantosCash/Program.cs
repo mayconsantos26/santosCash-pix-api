@@ -7,12 +7,9 @@ using Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Builder Services sendo utilizado como container de injeção de dependência // 
 
-// Configuração da conexão com o BD MySQL
 builder.Services.AddControllersWithViews(); // MVC
-
-builder.Services.AddSwaggerGen(); // Adiciona o Swagger
 
 builder.Services.AddSwaggerGen(options =>
 {
@@ -22,6 +19,15 @@ builder.Services.AddSwaggerGen(options =>
         Version = "v1",
         Description = "Exemplo de configuração do Swagger em ASP.NET Core",
     });
+});
+
+// Definindo a política padrão CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("DefaultPolicy",
+        policy => policy.AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader());
 });
 
 // Adicionado a conexão com o BD Postgres
@@ -53,6 +59,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseRouting();
+
+app.UseCors("DefaultPolicy");
 
 app.UseAuthorization();
 

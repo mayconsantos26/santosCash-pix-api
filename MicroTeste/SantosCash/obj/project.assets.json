@@ -4508,19 +4508,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Fastcash Analista\\.nuget\\packages\\": {}
+    "C:\\Users\\mayco\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Fastcash Analista\\Documents\\GitHub\\aulas-backend\\MicroTeste\\SantosCash\\SantosCash.csproj",
+      "projectUniqueName": "C:\\Users\\mayco\\OneDrive\\Documentos\\Repositorios\\aulas-backend\\MicroTeste\\SantosCash\\SantosCash.csproj",
       "projectName": "SantosCash",
-      "projectPath": "C:\\Users\\Fastcash Analista\\Documents\\GitHub\\aulas-backend\\MicroTeste\\SantosCash\\SantosCash.csproj",
-      "packagesPath": "C:\\Users\\Fastcash Analista\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Fastcash Analista\\Documents\\GitHub\\aulas-backend\\MicroTeste\\SantosCash\\obj\\",
+      "projectPath": "C:\\Users\\mayco\\OneDrive\\Documentos\\Repositorios\\aulas-backend\\MicroTeste\\SantosCash\\SantosCash.csproj",
+      "packagesPath": "C:\\Users\\mayco\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\mayco\\OneDrive\\Documentos\\Repositorios\\aulas-backend\\MicroTeste\\SantosCash\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Fastcash Analista\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\mayco\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
@@ -4542,7 +4542,7 @@
       "restoreAuditProperties": {
         "enableAudit": "true",
         "auditLevel": "low",
-        "auditMode": "direct"
+        "auditMode": "all"
       },
       "SdkAnalysisLevel": "9.0.100"
     },
@@ -4634,7 +4634,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

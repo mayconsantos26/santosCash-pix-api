@@ -1,13 +1,15 @@
+using System.Text;
 using AutoMapper;
 using Dbcontext;
 using DTOs.Mappings;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Repositories;
 using Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Builder Services sendo utilizado como container de injeção de dependência // 
+// **** Builder Services sendo utilizado como container de injeção de dependência ****// 
 
 builder.Services.AddControllersWithViews(); // MVC
 
@@ -21,14 +23,35 @@ builder.Services.AddSwaggerGen(options =>
     });
 });
 
-// Definindo a política padrão CORS
+// Definindo a política CORS
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("DefaultPolicy",
-        policy => policy.AllowAnyOrigin()
-                        .AllowAnyMethod()
-                        .AllowAnyHeader());
+    options.AddPolicy("AllowedMethodsPolicy", builder =>
+    {
+        builder.WithOrigins("https://localhost:5001/swagger/index.html") // Substitua pelo domínio permitido
+               .WithMethods("GET", "POST", "PUT", "DELETE") // Permite apenas esses métodos
+               .AllowAnyHeader(); // Permite qualquer cabeçalho
+    });
 });
+
+// Configurando o serviço de autenticação com JWT
+var jwtSettings = builder.Configuration.GetSection("JwtSettings");
+builder.Services.AddAuthentication("Bearer")
+.AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        ValidIssuer = jwtSettings["Issuer"],
+        ValidAudience = jwtSettings["Audience"],
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings["SecretKey"]))
+    };
+});
+
+builder.Services.AddAuthorization();
 
 // Adicionado a conexão com o BD Postgres
 string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
@@ -60,8 +83,9 @@ app.UseHttpsRedirection();
 
 app.UseRouting();
 
-app.UseCors("DefaultPolicy");
+app.UseCors("AllowedMethodsPolicy"); // CORS sempre entre UseAuthorization e UseRouting
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapStaticAssets();

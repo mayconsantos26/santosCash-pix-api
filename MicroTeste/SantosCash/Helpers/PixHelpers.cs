@@ -11,7 +11,7 @@ namespace Helpers
                 .Replace(Convert.ToBase64String(Guid.NewGuid().ToByteArray()), "")
                 .Substring(0, 11);
 
-            return $"E{Defaults.MicrocashIspb}{hora:yyyyMMddHHmm}{randomChars}"; // Gera o ID com o ISPB e a data
+            return $"E{Defaults.SantosCashIspb}{hora:yyyyMMddHHmm}{randomChars}"; // Gera o ID com o ISPB e a data
         }
 
         // Método para gerar o EndToEndId para devolução
@@ -34,7 +34,7 @@ namespace Helpers
                 .Substring(0, 11);
 
             // Build the txid
-            var txid = $"T{Defaults.MicrocashIspb}{hora:yyyyMMddHHmm}{randomChars}";
+            var txid = $"T{Defaults.SantosCashIspb}{hora:yyyyMMddHHmm}{randomChars}";
 
             // Ensure txid length is between 26 and 35 characters
             if (txid.Length > 35)

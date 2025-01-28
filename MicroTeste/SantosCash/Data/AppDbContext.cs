@@ -1,19 +1,23 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using MicroTeste.Models;
+using Models;
 
-namespace Dbcontext;
+namespace Data;
 
-public class AppDbContext : DbContext
+public class AppDbContext : IdentityDbContext
 {
-    public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
+    public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) 
+    { 
+    }
 
     public DbSet<Transacoes>? Transacoes { get; set; }
-    public DbSet<Keys>? Keys { get; set; }
 
     protected override void OnModelCreating(ModelBuilder mb)
     {
         // Fluent API - Definição de regras e relacionamentos das entidades no Banco de Dados
+
+        base.OnModelCreating(mb);
 
         // Definição da entidade Transações
         mb.Entity<Transacoes>()
@@ -77,32 +81,7 @@ public class AppDbContext : DbContext
             .Property(t => t.Data_Transacao) // Propriedade Data_Transacao
             .IsRequired();
 
-        // Definição da entidade Keys
-
-        mb.Entity<Keys>()
-            .Property(a => a.Id); // Definindo chave primária
-
-        mb.Entity<Keys>()
-            .Property(a => a.ApiKey) // Propriedade ApiKey
-            .HasMaxLength(64)
-            .IsRequired();
-
-        mb.Entity<Keys>()
-            .Property(a => a.Nome) // Propriedade Nome
-            .HasMaxLength(100)
-            .IsRequired();
-
-        mb.Entity<Keys>()
-            .Property(a => a.Cnpj) // Propriedade Cnpj
-            .HasMaxLength(14)
-            .IsRequired();
-
-        mb.Entity<Keys>()
-            .Property(a => a.Conta) // Propriedade Conta
-            .HasMaxLength(10)
-            .IsRequired();
-
-        // Converte todas as propriedades DateTime para UTC ao salvar no banco
+        // Converte globalmente todas as propriedades DateTime para UTC ao salvar no banco
         foreach (var property in mb.Model.GetEntityTypes()
             .SelectMany(t => t.GetProperties())
             .Where(p => p.ClrType == typeof(DateTime)))

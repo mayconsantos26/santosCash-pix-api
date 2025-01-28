@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace SantosCash.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250128135420_DataUTC")]
-    partial class DataUTC
+    [Migration("20250128185146_TransationsWork")]
+    partial class TransationsWork
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

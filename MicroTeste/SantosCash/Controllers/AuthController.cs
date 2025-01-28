@@ -7,7 +7,7 @@ using System.Security.Claims;
 using Models;
 using DTOs.User;
 
-namespace APICatalogo.Controllers;
+namespace Controllers;
 
 [Route("api/[controller]")]
 [ApiController]

@@ -21,9 +21,9 @@ builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo
     {
-        Title = "apicatalogo",
+        Title = "Transações API",
         Version = "v1",
-        Description = "Exemplo de configuração do Swagger em ASP.NET Core"
+        Description = "Exemplo de API para transações financeiras.",
     });
 
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
@@ -89,8 +89,8 @@ builder.Services.AddAuthentication(options =>
 
     options.TokenValidationParameters = new TokenValidationParameters
     {
-        ValidateIssuer = true,
-        ValidateAudience = true,
+        ValidateIssuer = false,
+        ValidateAudience = false,
         ValidateLifetime = true,
         ValidateIssuerSigningKey = true,
         ValidIssuer = jwtSettings["Issuer"],

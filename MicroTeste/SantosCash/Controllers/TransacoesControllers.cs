@@ -7,6 +7,7 @@ namespace Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
+[Authorize]
 public class TransacoesController : ControllerBase
 {
     private readonly ITransacoesServices _transacoesServices;
@@ -17,7 +18,6 @@ public class TransacoesController : ControllerBase
     }
 
     // GET: api/Transacoes
-    [Authorize]
     [HttpGet]
     public async Task<ActionResult<IEnumerable<TransacoesDTO>>> GetAllTransacoes()
     {
@@ -33,7 +33,6 @@ public class TransacoesController : ControllerBase
     }
 
     // GET: api/Transacoes/{txid}
-    [Authorize]
     [HttpGet("{txid}")]
     public async Task<ActionResult<TransacoesDTO>> GetTransacaoByTxid(string txid)
     {
@@ -57,7 +56,6 @@ public class TransacoesController : ControllerBase
     }
 
     // POST: api/Transacoes
-    [Authorize]
     [HttpPost]
     public async Task<ActionResult<TransacoesCreateResponseDTO>> CreateTransacao(TransacoesCreateRequestDTO request)
     {
@@ -77,7 +75,6 @@ public class TransacoesController : ControllerBase
     }
 
     // PUT: api/Transacoes/{txid}
-    [Authorize]
     [HttpPut("{txid}")]
     public async Task<ActionResult<TransacoesDTO>> UpdateTransacao(string txid, TransacoesUpdateDTO request)
     {
@@ -106,7 +103,6 @@ public class TransacoesController : ControllerBase
     }
 
     // DELETE: api/Transacoes/{txid}
-    [Authorize]
     [HttpDelete("{txid}")]
     public async Task<ActionResult<TransacoesDTO>> DeleteTransacao(string txid)
     {

@@ -78,17 +78,18 @@ public class AppDbContext : IdentityDbContext<ApplicationUser>
             .IsRequired();
 
         mb.Entity<Transacoes>()
-            .Property(t => t.Data_Transacao) // Propriedade Data_Transacao
-            .IsRequired();
+        .Property(t => t.Data_Transacao)
+        .HasPrecision(3) // Exemplo de precisão (opcional)
+        .IsRequired();
 
-        // Converte globalmente todas as propriedades DateTime para UTC ao salvar no banco
+        // Configuração global para DateTime e DateTime? como UTC
         foreach (var property in mb.Model.GetEntityTypes()
             .SelectMany(t => t.GetProperties())
-            .Where(p => p.ClrType == typeof(DateTime)))
+            .Where(p => p.ClrType == typeof(DateTime) || p.ClrType == typeof(DateTime?)))
         {
             property.SetValueConverter(new ValueConverter<DateTime, DateTime>(
-                v => v.ToUniversalTime(), // Converte para UTC antes de salvar
-                v => DateTime.SpecifyKind(v, DateTimeKind.Utc) // Garantir que é UTC ao ler
+                v => v.Kind == DateTimeKind.Utc ? v : v.ToUniversalTime(),
+                v => DateTime.SpecifyKind(v, DateTimeKind.Utc)
             ));
         }
     }

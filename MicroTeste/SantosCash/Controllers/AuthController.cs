@@ -13,144 +13,55 @@ namespace APICatalogo.Controllers;
 [ApiController]
 public class AuthController : ControllerBase
 {
-    private readonly ITokenServices _tokenServices; 
-    // Serviços de token são geralmente usados para gerar, validar e gerenciar tokens de autenticação, como JWT (JSON Web Tokens).
-    private readonly UserManager<ApplicationUser> _userManager; // O UserManager é uma classe do ASP.NET Identity que fornece funcionalidades para gerenciar usuários, como criação, atualização, exclusão e consulta de usuários. 
-    private readonly RoleManager<IdentityRole> _roleManager; // O RoleManager é uma classe do ASP.NET Identity que fornece funcionalidades para gerenciar papéis (roles), como criação, atualização, exclusão e consulta de papéis.
-    private readonly IConfiguration _configuration; // A IConfiguration é usada para acessar configurações da aplicação, como strings de conexão, chaves de API, e outras configurações definidas em arquivos de configuração (por exemplo, appsettings.json).
-    private readonly ILogger<AuthController> _logger; // O ILogger é usado para registrar logs e mensagens de depuração, erros, informações e outros eventos importantes durante a execução da aplicação.
+    private readonly ITokenServices _tokenServices;
+    private readonly UserManager<ApplicationUser> _userManager;
+    private readonly RoleManager<IdentityRole> _roleManager;
+    private readonly IConfiguration _configuration;
+    private readonly ILogger<AuthController> _logger;
 
-    public AuthController(ITokenServices tokenService,
+    public AuthController(ITokenServices tokenServices,
                           UserManager<ApplicationUser> userManager,
                           RoleManager<IdentityRole> roleManager,
                           IConfiguration configuration,
                           ILogger<AuthController> logger)
     {
-        _tokenServices = tokenService;
+        _tokenServices = tokenServices;
         _userManager = userManager;
         _roleManager = roleManager;
         _configuration = configuration;
         _logger = logger;
     }
 
-    [HttpPost]
-    [Route("CriarPerfil")]
-    public async Task<IActionResult> CreateRole(string nomePerfil)
+    /// Cria um novo perfil (role) no sistema.
+    [HttpPost("CreateRole")]
+    public async Task<IActionResult> CreateRole(string roleName)
     {
-        var roleExist = await _roleManager.RoleExistsAsync(nomePerfil);
-
-        if (!roleExist)
+        if (await _roleManager.RoleExistsAsync(roleName))
         {
-            var roleResult = await _roleManager.CreateAsync(new IdentityRole(nomePerfil));
-
-            if (roleResult.Succeeded)
-            {
-                _logger.LogInformation(1, "Perfil adicionado com sucesso");
-                return StatusCode(StatusCodes.Status200OK,
-                        new ResponseUserDTO { Status = "Sucesso", Message = 
-                        $"Perfil {nomePerfil} adicionado com sucesso" });
-            }
-            else
-            {
-                _logger.LogInformation(2, "Erro");
-                return StatusCode(StatusCodes.Status400BadRequest,
-                   new ResponseUserDTO { Status = "Erro", Message = 
-                       $"Problema ao adicionar Perfil {nomePerfil}" });
-            }
+            return BadRequest(new ResponseUserDTO { Status = "Error", Message = "Role already exists." });
         }
-        return StatusCode(StatusCodes.Status400BadRequest,
-          new ResponseUserDTO { Status = "Erro", Message = "Perfil já existe." });
+
+        var result = await _roleManager.CreateAsync(new IdentityRole(roleName));
+        if (result.Succeeded)
+        {
+            _logger.LogInformation($"Role '{roleName}' created successfully.");
+            return Ok(new ResponseUserDTO { Status = "Success", Message = $"Role '{roleName}' created successfully." });
+        }
+
+        _logger.LogError($"Error creating role '{roleName}'.");
+        return BadRequest(new ResponseUserDTO { Status = "Error", Message = $"Failed to create role '{roleName}'." });
     }
 
-    // [HttpPost]
-    // [Route("AdicionarUsuarioAoPerfil")]
-    // public async Task<IActionResult> AddUserToRole(string email, string nomePerfil)
-    // {
-    //     var user = await _userManager.FindByEmailAsync(email);
-
-    //     if (user != null)
-    //     {
-    //         var result = await _userManager.AddToRoleAsync(user, nomePerfil);
-    //         if(result.Succeeded)
-    //         {
-    //             _logger.LogInformation(1, $"Usuário {user.Email} adicionado ao papel {nomePerfil}");
-    //             return StatusCode(StatusCodes.Status200OK,
-    //                    new ResponseUserDTO { Status = "Sucesso", Message = 
-    //                    $"Usuário {user.Email} adicionado ao papel {nomePerfil}" });
-    //         }
-    //         else
-    //         {
-    //             _logger.LogInformation(1, $"Erro: Não foi possível adicionar o usuário {user.Email} ao papel {nomePerfil}");
-    //             return StatusCode(StatusCodes.Status400BadRequest, new ResponseUserDTO
-    //             {
-    //                 Status = "Erro",
-    //                 Message =$"Erro: Não foi possível adicionar o usuário {user.Email} ao papel {nomePerfil}"
-    //             });
-    //         }
-    //     }
-    //     return BadRequest(new { error = "Não foi possível encontrar o usuário" });
-    // }
-
-    [HttpPost]
-    [Route("Login")]
-    public async Task<IActionResult> Login([FromBody] LoginDTO model)
-    {
-        var user = await _userManager.FindByNameAsync(model.UserName!);
-
-        if (user is not null && await _userManager.CheckPasswordAsync(user, model.Password!))
-        {
-            var userRoles = await _userManager.GetRolesAsync(user);
-
-            var authClaims = new List<Claim>
-            {
-                new Claim(ClaimTypes.Name, user.UserName!),
-                new Claim(ClaimTypes.Email, user.Email!),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-            };
-
-            foreach (var userRole in userRoles)
-            {
-                authClaims.Add(new Claim(ClaimTypes.Role, userRole));
-            }
-
-            var token = _tokenServices.GenerateAccessToken(authClaims,
-                                                         _configuration);
-
-            var refreshToken = _tokenServices.GenerateRefreshToken();
-
-            _ = int.TryParse(_configuration["JWT:RefreshTokenValidityInMinutes"],
-                               out int refreshTokenValidityInMinutes);
-
-            user.RefreshTokenExpiryTime =
-                            DateTime.Now.AddMinutes(refreshTokenValidityInMinutes);
-
-            user.RefreshToken = refreshToken;
-
-            await _userManager.UpdateAsync(user);
-
-            return Ok(new
-            {
-                Token = new JwtSecurityTokenHandler().WriteToken(token),
-                RefreshToken = refreshToken,
-                Expiration = token.ValidTo
-            });
-        }
-        return Unauthorized();
-    }
-
-    [HttpPost]
-    [Route("Registrar")]
+    /// Registra um novo usuário no sistema.
+    [HttpPost("Register")]
     public async Task<IActionResult> Register([FromBody] RegisterDTO model)
     {
-        var userExists = await _userManager.FindByNameAsync(model.Username!);
-
-        if (userExists != null)
+        if (await _userManager.FindByNameAsync(model.Username!) != null)
         {
-            return StatusCode(StatusCodes.Status500InternalServerError,
-                   new ResponseUserDTO { Status = "Erro", Message = "Usuário já existe!" });
+            return BadRequest(new ResponseUserDTO { Status = "Error", Message = "User already exists." });
         }
 
-        ApplicationUser user = new()
+        var user = new ApplicationUser
         {
             Email = model.Email,
             SecurityStamp = Guid.NewGuid().ToString(),
@@ -158,77 +69,104 @@ public class AuthController : ControllerBase
         };
 
         var result = await _userManager.CreateAsync(user, model.Password!);
-
         if (!result.Succeeded)
         {
-            return StatusCode(StatusCodes.Status500InternalServerError,
-                   new ResponseUserDTO { Status = "Erro", Message = "Falha na criação do usuário." });
+            return StatusCode(500, new ResponseUserDTO { Status = "Error", Message = "User creation failed." });
         }
 
-        return Ok(new ResponseUserDTO { Status = "Sucesso", Message = "Usuário criado com sucesso!" });
+        return Ok(new ResponseUserDTO { Status = "Success", Message = "User created successfully." });
     }
 
-    [HttpPost]
-    [Route("RevogarToken")]
-    public async Task<IActionResult> RefreshToken(TokenDTO token)
+    /// Autentica o usuário e retorna tokens de acesso e refresh.
+    [HttpPost("Login")]
+    public async Task<IActionResult> Login([FromBody] LoginDTO model)
     {
-        if (token is null)
+        var user = await _userManager.FindByNameAsync(model.UserName!);
+
+        if (user == null || !await _userManager.CheckPasswordAsync(user, model.Password!))
         {
-            return BadRequest("Requisição inválida do cliente");
+            return Unauthorized(new { Error = "Invalid username or password." });
         }
 
-        string? accessToken = token.AccessToken
-                              ?? throw new ArgumentNullException(nameof(token));
-
-        string? refreshToken = token.RefreshToken
-                               ?? throw new ArgumentException(nameof(token));
-
-        var principal = _tokenServices.GetPrincipalFromExpiredToken(accessToken!, _configuration);
-
-        if (principal == null)
+        var userRoles = await _userManager.GetRolesAsync(user);
+        var authClaims = new List<Claim>
         {
-            return BadRequest("Token de acesso/refresh token inválido");
-        }
+            new Claim(ClaimTypes.Name, user.UserName!),
+            new Claim(ClaimTypes.Email, user.Email!),
+            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+        };
 
-        string username = principal.Identity.Name;
+        authClaims.AddRange(userRoles.Select(role => new Claim(ClaimTypes.Role, role)));
 
-        var user = await _userManager.FindByNameAsync(username!);
+        var token = _tokenServices.GenerateAccessToken(authClaims, _configuration);
+        var refreshToken = _tokenServices.GenerateRefreshToken();
 
-        if (user == null || user.RefreshToken != refreshToken
-                         || user.RefreshTokenExpiryTime <= DateTime.Now)
-        {
-            return BadRequest("Token de acesso/refresh token inválido");
-        }
-
-        var newAccessToken = _tokenServices.GenerateAccessToken(
-                                           principal.Claims.ToList(), _configuration);
-
-        var newRefreshToken = _tokenServices.GenerateRefreshToken();
-
-        user.RefreshToken = newRefreshToken;
+        user.RefreshToken = refreshToken;
+        user.RefreshTokenExpiryTime = DateTime.Now.AddMinutes(_configuration.GetValue<int>("JWT:RefreshTokenValidityInMinutes"));
 
         await _userManager.UpdateAsync(user);
 
-        return new ObjectResult(new
+        return Ok(new
         {
-            accessToken = new JwtSecurityTokenHandler().WriteToken(newAccessToken),
-            refreshToken = newRefreshToken
+            Token = new JwtSecurityTokenHandler().WriteToken(token),
+            RefreshToken = refreshToken,
+            Expiration = token.ValidTo
         });
     }
 
+    /// Atualiza o token de acesso usando o refresh token.
+    [HttpPost("RefreshToken")]
+    public async Task<IActionResult> RefreshToken(TokenDTO token)
+    {
+        if (token == null)
+        {
+            return BadRequest("Invalid client request.");
+        }
+
+        var principal = _tokenServices.GetPrincipalFromExpiredToken(token.AccessToken!, _configuration);
+        var user = await _userManager.FindByNameAsync(principal.Identity!.Name!);
+
+        if (user == null || user.RefreshToken != token.RefreshToken || user.RefreshTokenExpiryTime <= DateTime.Now)
+        {
+            return BadRequest("Invalid access or refresh token.");
+        }
+
+        var newAccessToken = _tokenServices.GenerateAccessToken(principal.Claims.ToList(), _configuration);
+        var newRefreshToken = _tokenServices.GenerateRefreshToken();
+
+        user.RefreshToken = newRefreshToken;
+        await _userManager.UpdateAsync(user);
+
+        return Ok(new
+        {
+            AccessToken = new JwtSecurityTokenHandler().WriteToken(newAccessToken),
+            RefreshToken = newRefreshToken
+        });
+    }
+
+    /// Revoga o token de um usuário específico.
     [Authorize]
-    [HttpPost]
-    [Route("Revogar/{username}")]
+    [HttpPost("Revoke/{username}")]
     public async Task<IActionResult> Revoke(string username)
     {
         var user = await _userManager.FindByNameAsync(username);
 
-        if (user == null) return BadRequest("Nome de usuário inválido");
+        if (user == null)
+        {
+            return NotFound(new ResponseUserDTO { Status = "Error", Message = "User not found." });
+        }
 
         user.RefreshToken = null;
+        user.RefreshTokenExpiryTime = null;
 
-        await _userManager.UpdateAsync(user);
+        var result = await _userManager.UpdateAsync(user);
+        if (result.Succeeded)
+        {
+            _logger.LogInformation($"Refresh token revoked for user '{username}'.");
+            return Ok(new ResponseUserDTO { Status = "Success", Message = $"Refresh token revoked for user '{username}'." });
+        }
 
-        return NoContent();
+        _logger.LogError($"Error revoking refresh token for user '{username}'.");
+        return StatusCode(500, new ResponseUserDTO { Status = "Error", Message = $"Failed to revoke refresh token for user '{username}'." });
     }
 }

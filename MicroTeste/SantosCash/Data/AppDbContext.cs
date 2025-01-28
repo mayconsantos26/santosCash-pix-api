@@ -5,7 +5,7 @@ using Models;
 
 namespace Data;
 
-public class AppDbContext : IdentityDbContext
+public class AppDbContext : IdentityDbContext<ApplicationUser>
 {
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) 
     { 
@@ -17,7 +17,7 @@ public class AppDbContext : IdentityDbContext
     {
         // Fluent API - Definição de regras e relacionamentos das entidades no Banco de Dados
 
-        base.OnModelCreating(mb);
+        base.OnModelCreating(mb); // Chama o método OnModelCreating da classe base
 
         // Definição da entidade Transações
         mb.Entity<Transacoes>()

@@ -2,87 +2,119 @@ using System.Text;
 using AutoMapper;
 using Data;
 using DTOs.Mappings;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
+using Models;
 using Repositories;
 using Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// **** Builder Services sendo utilizado como container de injeção de dependência ****// 
+// Configuração dos serviços
+builder.Services.AddControllersWithViews(); // Adiciona suporte a MVC
 
-builder.Services.AddControllersWithViews(); // MVC
-
-builder.Services.AddSwaggerGen(options =>
+// Configuração do Swagger
+builder.Services.AddSwaggerGen(c =>
 {
-    options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+    c.SwaggerDoc("v1", new OpenApiInfo
     {
-        Title = "Minha API",
+        Title = "apicatalogo",
         Version = "v1",
-        Description = "Exemplo de configuração do Swagger em ASP.NET Core",
+        Description = "Exemplo de configuração do Swagger em ASP.NET Core"
+    });
+
+    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        Name = "Authorization",
+        Type = SecuritySchemeType.ApiKey,
+        Scheme = "Bearer",
+        BearerFormat = "JWT",
+        In = ParameterLocation.Header,
+        Description = "Bearer JWT",
+    });
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                }
+            },
+            new string[] { }
+        }
     });
 });
 
-// Definindo a política CORS
+// Definição da política CORS
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowedMethodsPolicy", builder =>
     {
-        builder.WithOrigins("https://localhost:5001/swagger/index.html") // Substitua pelo domínio permitido
-               .WithMethods("GET", "POST", "PUT", "DELETE") // Permite apenas esses métodos
-               .AllowAnyHeader(); // Permite qualquer cabeçalho
+        builder.AllowAnyOrigin()
+               .WithMethods("GET", "POST", "PUT", "DELETE")
+               .AllowAnyHeader();
     });
 });
 
-// Adicionando o Identity com o Entity Framework
-builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
     .AddEntityFrameworkStores<AppDbContext>()
-    .AddDefaultTokenProviders();
+    .AddDefaultTokenProviders(); // Necessário para trabalhar com geração de tokens
 
 
-// Obtendo as configurações do arquivo appsettings.json
-var jwtSettings = builder.Configuration.GetSection("JwtSettings");
+// Obtendo as configurações do JWT do arquivo appsettings.json
+var jwtSettings = builder.Configuration.GetSection("Jwt");
 
-// Adicionando autenticação com JWT
-builder.Services.AddAuthentication("Bearer")
-    .AddJwtBearer(options =>
+// Configuração de autenticação e JWT
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(options =>
+{
+    options.SaveToken = true;
+    options.RequireHttpsMetadata = false;
+
+    // Validação da chave de segurança e parâmetros JWT
+    var secretKey = jwtSettings["SecretKey"];
+    if (string.IsNullOrEmpty(secretKey))
     {
-        options.TokenValidationParameters = new TokenValidationParameters
-        {
-            ValidateIssuer = true,
-            ValidateAudience = true,
-            ValidateLifetime = true,
-            ValidateIssuerSigningKey = true,
-            ValidIssuer = jwtSettings["Issuer"],
-            ValidAudience = jwtSettings["Audience"],
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings["SecretKey"]))
-        };
-    });
+        throw new ArgumentNullException(nameof(secretKey), "JWT:SecretKey não pode ser nulo.");
+    }
 
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        ValidIssuer = jwtSettings["Issuer"],
+        ValidAudience = jwtSettings["Audience"],
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey))
+    };
+});
 
-builder.Services.AddAuthorization();
-
-// Adicionado a conexão com o BD Postgres
+// Configuração do banco de dados PostgreSQL
 string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<AppDbContext>(options => options.UseNpgsql(connectionString));
 
-// Registrando Services com sua implementação
-builder.Services.AddScoped<ITransacoesServices, TransacoesServices>();
-builder.Services.AddScoped<ITransacoesRepository, TransacoesRepository>();
-
-// Adicionado a conexão com o mapeamento AutoMapper e perfil de mapeamento
+// Configuração do AutoMapper
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 
-var config = new MapperConfiguration(cfg =>
-{
-    cfg.AddProfile<MappingProfile>(); // Adiciona o perfil que define o mapeamento
-});
+// Registro de dependências
+builder.Services.AddScoped<ITransacoesServices, TransacoesServices>();
+builder.Services.AddScoped<ITransacoesRepository, TransacoesRepository>();
+builder.Services.AddScoped<ITokenServices, TokenServices>();
 
 var app = builder.Build();
 
-// Configuração do Swagger
+// Configuração de middleware
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -93,12 +125,11 @@ app.UseHttpsRedirection();
 
 app.UseRouting();
 
-app.UseCors("AllowedMethodsPolicy"); // CORS sempre entre UseAuthorization e UseRouting
+app.UseCors("AllowedMethodsPolicy");
 
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapStaticAssets();
 app.MapControllers();
 
 app.Run();

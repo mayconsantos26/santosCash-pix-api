@@ -38,18 +38,18 @@ public class AuthController : ControllerBase
     {
         if (await _roleManager.RoleExistsAsync(roleName))
         {
-            return BadRequest(new ResponseUserDTO { Status = "Erro", Message = "O perfil já existe." });
+            return BadRequest(new ResponseUserDTO { Status = "Error", Message = "Role already exists." });
         }
 
         var result = await _roleManager.CreateAsync(new IdentityRole(roleName));
         if (result.Succeeded)
         {
-            _logger.LogInformation($"Perfil '{roleName}' criado com sucesso.");
-            return Ok(new ResponseUserDTO { Status = "Sucesso", Message = $"Perfil '{roleName}' criado com sucesso." });
+            _logger.LogInformation($"Role '{roleName}' created successfully.");
+            return Ok(new ResponseUserDTO { Status = "Success", Message = $"Role '{roleName}' created successfully." });
         }
 
-        _logger.LogError($"Erro ao criar o perfil '{roleName}'.");
-        return BadRequest(new ResponseUserDTO { Status = "Erro", Message = $"Falha ao criar o perfil '{roleName}'." });
+        _logger.LogError($"Error creating role '{roleName}'.");
+        return BadRequest(new ResponseUserDTO { Status = "Error", Message = $"Failed to create role '{roleName}'." });
     }
 
     /// Registra um novo usuário no sistema.
@@ -58,7 +58,7 @@ public class AuthController : ControllerBase
     {
         if (await _userManager.FindByNameAsync(model.Username!) != null)
         {
-            return BadRequest(new ResponseUserDTO { Status = "Erro", Message = "O usuário já existe." });
+            return BadRequest(new ResponseUserDTO { Status = "Error", Message = "User already exists." });
         }
 
         var user = new ApplicationUser
@@ -71,10 +71,10 @@ public class AuthController : ControllerBase
         var result = await _userManager.CreateAsync(user, model.Password!);
         if (!result.Succeeded)
         {
-            return StatusCode(500, new ResponseUserDTO { Status = "Erro", Message = "Falha ao criar o usuário." });
+            return StatusCode(500, new ResponseUserDTO { Status = "Error", Message = "User creation failed." });
         }
 
-        return Ok(new ResponseUserDTO { Status = "Sucesso", Message = "Usuário criado com sucesso." });
+        return Ok(new ResponseUserDTO { Status = "Success", Message = "User created successfully." });
     }
 
     /// Autentica o usuário e retorna tokens de acesso e refresh.
@@ -85,7 +85,7 @@ public class AuthController : ControllerBase
 
         if (user == null || !await _userManager.CheckPasswordAsync(user, model.Password!))
         {
-            return Unauthorized(new { Erro = "Nome de usuário ou senha inválidos." });
+            return Unauthorized(new { Error = "Invalid username or password." });
         }
 
         var userRoles = await _userManager.GetRolesAsync(user);
@@ -120,7 +120,7 @@ public class AuthController : ControllerBase
     {
         if (token == null)
         {
-            return BadRequest("Requisição inválida do cliente.");
+            return BadRequest("Invalid client request.");
         }
 
         var principal = _tokenServices.GetPrincipalFromExpiredToken(token.AccessToken!, _configuration);
@@ -128,7 +128,7 @@ public class AuthController : ControllerBase
 
         if (user == null || user.RefreshToken != token.RefreshToken || user.RefreshTokenExpiryTime <= DateTime.Now)
         {
-            return BadRequest("Token de acesso ou refresh inválido.");
+            return BadRequest("Invalid access or refresh token.");
         }
 
         var newAccessToken = _tokenServices.GenerateAccessToken(principal.Claims.ToList(), _configuration);
@@ -153,7 +153,7 @@ public class AuthController : ControllerBase
 
         if (user == null)
         {
-            return NotFound(new ResponseUserDTO { Status = "Erro", Message = "Usuário não encontrado." });
+            return NotFound(new ResponseUserDTO { Status = "Error", Message = "User not found." });
         }
 
         user.RefreshToken = null;
@@ -162,11 +162,11 @@ public class AuthController : ControllerBase
         var result = await _userManager.UpdateAsync(user);
         if (result.Succeeded)
         {
-            _logger.LogInformation($"Token de refresh revogado para o usuário '{username}'.");
-            return Ok(new ResponseUserDTO { Status = "Sucesso", Message = $"Token de refresh revogado para o usuário '{username}'." });
+            _logger.LogInformation($"Refresh token revoked for user '{username}'.");
+            return Ok(new ResponseUserDTO { Status = "Success", Message = $"Refresh token revoked for user '{username}'." });
         }
 
-        _logger.LogError($"Erro ao revogar o token de refresh para o usuário '{username}'.");
-        return StatusCode(500, new ResponseUserDTO { Status = "Erro", Message = $"Falha ao revogar o token de refresh para o usuário '{username}'." });
+        _logger.LogError($"Error revoking refresh token for user '{username}'.");
+        return StatusCode(500, new ResponseUserDTO { Status = "Error", Message = $"Failed to revoke refresh token for user '{username}'." });
     }
-} 
+}

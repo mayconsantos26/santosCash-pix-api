@@ -62,11 +62,6 @@ builder.Services.AddCors(options =>
     });
 });
 
-builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
-    .AddEntityFrameworkStores<AppDbContext>()
-    .AddDefaultTokenProviders(); // Necessário para trabalhar com geração de tokens
-
-
 // Obtendo as configurações do JWT do arquivo appsettings.json
 var jwtSettings = builder.Configuration.GetSection("Jwt");
 
@@ -89,8 +84,8 @@ builder.Services.AddAuthentication(options =>
 
     options.TokenValidationParameters = new TokenValidationParameters
     {
-        ValidateIssuer = false,
-        ValidateAudience = false,
+        ValidateIssuer = true,
+        ValidateAudience = true,
         ValidateLifetime = true,
         ValidateIssuerSigningKey = true,
         ValidIssuer = jwtSettings["Issuer"],
@@ -98,6 +93,10 @@ builder.Services.AddAuthentication(options =>
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey))
     };
 });
+
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+    .AddEntityFrameworkStores<AppDbContext>()
+    .AddDefaultTokenProviders(); // Necessário para trabalhar com geração de tokens
 
 // Configuração do banco de dados PostgreSQL
 string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");

@@ -1,5 +1,4 @@
 using System.Text;
-using AutoMapper;
 using Data;
 using DTOs.Mappings;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -110,6 +109,8 @@ builder.Services.AddAutoMapper(typeof(MappingProfile));
 builder.Services.AddScoped<ITransacoesServices, TransacoesServices>();
 builder.Services.AddScoped<ITransacoesRepository, TransacoesRepository>();
 builder.Services.AddScoped<ITokenServices, TokenServices>();
+
+builder.Services.AddControllers();
 
 var app = builder.Build();
 

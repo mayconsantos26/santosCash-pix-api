@@ -1,4 +1,4 @@
-﻿namespace DTOs.User;
+namespace DTOs.User;
 
 public class TokenDTO
 {

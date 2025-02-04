@@ -12,4 +12,6 @@ public class RegisterDTO
 
     [Required(ErrorMessage = "Senha é obrigatória")]
     public string? Password { get; set; }
+
+    public string? Role { get; set; }
 }

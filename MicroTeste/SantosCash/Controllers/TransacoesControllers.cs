@@ -5,9 +5,8 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Controllers;
 
-[ApiController]
 [Route("api/[controller]")]
-[Authorize]
+[ApiController]
 public class TransacoesController : ControllerBase
 {
     private readonly ITransacoesServices _transacoesServices;

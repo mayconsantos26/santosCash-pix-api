@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace SantosCash.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250128185146_TransationsWork")]
+    [Migration("20250204190201_TransationsWork")]
     partial class TransationsWork
     {
         /// <inheritdoc />
@@ -202,7 +202,7 @@ namespace SantosCash.Migrations
                     b.Property<string>("RefreshToken")
                         .HasColumnType("text");
 
-                    b.Property<DateTime?>("RefreshTokenExpiryTime")
+                    b.Property<DateTime>("RefreshTokenExpiryTime")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("SecurityStamp")

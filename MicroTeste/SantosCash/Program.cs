@@ -9,6 +9,7 @@ using Microsoft.OpenApi.Models;
 using Models;
 using Repositories;
 using Services;
+using Services.Autentication;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -72,7 +73,7 @@ builder.Services.AddAuthentication(options =>
 }).AddJwtBearer(options =>
 {
     options.SaveToken = true;
-    options.RequireHttpsMetadata = false;
+    options.RequireHttpsMetadata = true;
 
     // Validação da chave de segurança e parâmetros JWT
     var secretKey = jwtSettings["SecretKey"];
@@ -93,13 +94,14 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
-builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
-    .AddEntityFrameworkStores<AppDbContext>()
-    .AddDefaultTokenProviders(); // Necessário para trabalhar com geração de tokens
-
 // Configuração do banco de dados PostgreSQL
 string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<AppDbContext>(options => options.UseNpgsql(connectionString));
+
+// Configuração do Identity
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+    .AddEntityFrameworkStores<AppDbContext>()
+    .AddDefaultTokenProviders(); // Necessário para trabalhar com geração de tokens
 
 // Configuração do AutoMapper
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
@@ -108,7 +110,7 @@ builder.Services.AddAutoMapper(typeof(MappingProfile));
 // Registro de dependências
 builder.Services.AddScoped<ITransacoesServices, TransacoesServices>();
 builder.Services.AddScoped<ITransacoesRepository, TransacoesRepository>();
-builder.Services.AddScoped<ITokenServices, TokenServices>();
+builder.Services.AddScoped<IAuthService, AuthService>();
 
 builder.Services.AddControllers();
 

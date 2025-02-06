@@ -18,7 +18,6 @@ public class TransacoesController : ControllerBase
 
     // GET: api/Transacoes
     [HttpGet]
-    [Authorize(Roles = "User, Admin")]
     public async Task<ActionResult<IEnumerable<TransacoesDTO>>> GetAllTransacoes()
     {
         try
@@ -34,7 +33,6 @@ public class TransacoesController : ControllerBase
 
     // GET: api/Transacoes/{txid}
     [HttpGet("{txid}")]
-    [Authorize(Roles = "Admin, User")]
     public async Task<ActionResult<TransacoesDTO>> GetTransacaoByTxid(string txid)
     {
         try

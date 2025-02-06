@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using DTOs;
-using Services;
+using Interfaces;
 using Microsoft.AspNetCore.Authorization;
 
 namespace Controllers;
@@ -9,20 +9,21 @@ namespace Controllers;
 [ApiController]
 public class TransacoesController : ControllerBase
 {
-    private readonly ITransacoesServices _transacoesServices;
+    private readonly ITransacoesService _transacoesService;
 
-    public TransacoesController(ITransacoesServices transacoesServices)
+    public TransacoesController(ITransacoesService transacoesServices)
     {
-        _transacoesServices = transacoesServices;
+        _transacoesService = transacoesServices;
     }
 
     // GET: api/Transacoes
     [HttpGet]
+    [Authorize(Roles = "User, Admin")]
     public async Task<ActionResult<IEnumerable<TransacoesDTO>>> GetAllTransacoes()
     {
         try
         {
-            var transacoes = await _transacoesServices.GetAll();
+            var transacoes = await _transacoesService.GetAll();
             return Ok(transacoes);
         }
         catch (Exception ex)
@@ -33,11 +34,12 @@ public class TransacoesController : ControllerBase
 
     // GET: api/Transacoes/{txid}
     [HttpGet("{txid}")]
+    [Authorize(Roles = "Admin, User")]
     public async Task<ActionResult<TransacoesDTO>> GetTransacaoByTxid(string txid)
     {
         try
         {
-            var transacao = await _transacoesServices.GetTransacoesDTOByTxidAsync(txid);
+            var transacao = await _transacoesService.GetTransacoesDTOByTxidAsync(txid);
             if (transacao == null)
             {
                 return NotFound(new { message = "Transação não encontrada." });
@@ -60,7 +62,7 @@ public class TransacoesController : ControllerBase
     {
         try
         {
-            var createdTransacao = await _transacoesServices.CreateTransacoesDTOAsync(request);
+            var createdTransacao = await _transacoesService.CreateTransacoesDTOAsync(request);
             return CreatedAtAction(nameof(GetTransacaoByTxid), new { txid = createdTransacao.Txid }, createdTransacao);
         }
         catch (ArgumentException ex)
@@ -84,7 +86,7 @@ public class TransacoesController : ControllerBase
                 return BadRequest(new { message = "Txid no corpo e na URL não correspondem." });
             }
 
-            var updatedTransacao = await _transacoesServices.UpdateTransacoesDTOAsync(request);
+            var updatedTransacao = await _transacoesService.UpdateTransacoesDTOAsync(request);
             return Ok(updatedTransacao);
         }
         catch (KeyNotFoundException)
@@ -107,7 +109,7 @@ public class TransacoesController : ControllerBase
     {
         try
         {
-            var deletedTransacao = await _transacoesServices.DeleteTransacoesDTOAsync(txid);
+            var deletedTransacao = await _transacoesService.DeleteTransacoesDTOAsync(txid);
             return Ok(deletedTransacao);
         }
         catch (KeyNotFoundException)

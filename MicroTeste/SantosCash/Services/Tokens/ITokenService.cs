@@ -1,6 +1,6 @@
 ﻿using Models;
 
-namespace Interfaces;
+namespace Services.Tokens;
 
 public interface ITokenService
 {

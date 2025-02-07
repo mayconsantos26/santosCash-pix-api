@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using DTOs;
-using Interfaces;
+using Services;
 using Microsoft.AspNetCore.Authorization;
 
 namespace Controllers;
@@ -15,7 +15,7 @@ public class TransacoesController : ControllerBase
     {
         _transacoesService = transacoesServices;
     }
-
+    
     // GET: api/Transacoes
     [HttpGet]
     public async Task<ActionResult<IEnumerable<TransacoesDTO>>> GetAllTransacoes()

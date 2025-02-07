@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SantosCash")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+508434c4d634a0d2325a3b652722bed3dda23f43")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+916b812db46d385346309e17e27f3d4cff05b9b7")]
 [assembly: System.Reflection.AssemblyProductAttribute("SantosCash")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SantosCash")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

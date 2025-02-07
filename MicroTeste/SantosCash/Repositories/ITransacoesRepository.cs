@@ -1,6 +1,6 @@
 ﻿using Models;
 
-namespace Interfaces;
+namespace Repositories;
 
 public interface ITransacoesRepository
 {

@@ -1,6 +1,6 @@
 ﻿using DTOs;
 
-namespace Interfaces;
+namespace Services;
 
 public interface ITransacoesService
 {

@@ -1,90 +1,64 @@
-﻿using Data;
-using Interfaces;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Models;
 
 namespace Repositories;
 
 public class TransacoesRepository : ITransacoesRepository
 {
-    private readonly AppDbContext _context;
+    private readonly IUnitOfWork _unitOfWork;
 
-    public TransacoesRepository(AppDbContext context)
+    public TransacoesRepository(IUnitOfWork unitOfWork)
     {
-        _context = context;
+        _unitOfWork = unitOfWork;
     }
 
-    // Read All
+    // Obter todas as transações
     public async Task<IEnumerable<Transacoes>> GetAll()
     {
-        return await _context.Transacoes.ToListAsync();
+        return await _unitOfWork.Context.Transacoes.ToListAsync();
     }
 
-    // Read By Txid
+    // Obter transação por Txid
     public async Task<Transacoes> GetByTxidAsync(string txid)
     {
         if (string.IsNullOrEmpty(txid))
-        {
             throw new ArgumentNullException(nameof(txid));
-        }
 
-        return await _context.Transacoes.FirstOrDefaultAsync(t => t.Txid == txid);
+        return await _unitOfWork.Context.Transacoes
+            .FirstOrDefaultAsync(t => t.Txid == txid);
     }
 
-    // Create
-    public async Task<Transacoes> CreateAsync(Transacoes transacoes)
+    // Criar uma nova transação
+    public async Task<Transacoes> CreateAsync(Transacoes transacao)
     {
-        if (transacoes == null)
-        {
-            throw new ArgumentNullException(nameof(transacoes));
-        }
+        if (transacao == null)
+            throw new ArgumentNullException(nameof(transacao));
 
-        var existingTransacao = await _context.Transacoes.FirstOrDefaultAsync(t => t.Txid == transacoes.Txid);
-        if (existingTransacao != null)
-        {
-            throw new InvalidOperationException("Transação já existe.");
-        }
-
-        _context.Transacoes.Add(transacoes);
-        await _context.SaveChangesAsync();
-        return transacoes;
+        _unitOfWork.Context.Transacoes.Add(transacao);
+        await _unitOfWork.SaveChangesAsync();
+        return transacao;
     }
 
-    // Update
-    public async Task<Transacoes> UpdateAsync(Transacoes transacoes)
+    // Atualizar transação existente
+    public async Task<Transacoes> UpdateAsync(Transacoes transacao)
     {
-        if (transacoes == null)
-        {
-            throw new ArgumentNullException(nameof(transacoes));
-        }
+        if (transacao == null)
+            throw new ArgumentNullException(nameof(transacao));
 
-        var existingTransacao = await _context.Transacoes.FirstOrDefaultAsync(t => t.Txid == transacoes.Txid);
-        if (existingTransacao == null)
-        {
-            throw new InvalidOperationException("Transação não encontrada.");
-        }
-
-        _context.Entry(existingTransacao).CurrentValues.SetValues(transacoes);
-        await _context.SaveChangesAsync();
-        return existingTransacao;
+        _unitOfWork.Context.Transacoes.Update(transacao);
+        await _unitOfWork.SaveChangesAsync();
+        return transacao;
     }
 
-    // Delete
+    // Remover transação por Txid
     public async Task<Transacoes> DeleteByTxidAsync(string txid)
     {
-        if (string.IsNullOrEmpty(txid))
-        {
-            throw new ArgumentNullException(nameof(txid));
-        }
-
-        var transacao = await _context.Transacoes.FirstOrDefaultAsync(t => t.Txid == txid);
+        var transacao = await GetByTxidAsync(txid);
         if (transacao == null)
-        {
-            throw new InvalidOperationException("Transação não encontrada.");
-        }
+            throw new KeyNotFoundException("Transação não encontrada.");
 
-        _context.Transacoes.Remove(transacao);
-        await _context.SaveChangesAsync();
+        _unitOfWork.Context.Transacoes.Remove(transacao);
+        await _unitOfWork.SaveChangesAsync();
         return transacao;
     }
 }

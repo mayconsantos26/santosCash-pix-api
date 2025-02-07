@@ -1,6 +1,5 @@
 using System.Text;
 using Data;
-using Interfaces;
 using Mappings;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -10,6 +9,7 @@ using Microsoft.OpenApi.Models;
 using Models;
 using Repositories;
 using Services;
+using Services.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -48,6 +48,8 @@ builder.Services.AddAutoMapper(typeof(MappingProfile));
 builder.Services.AddScoped<ITransacoesRepository, TransacoesRepository>();
 builder.Services.AddScoped<ITransacoesService, TransacoesService>();
 builder.Services.AddScoped<ITokenService, TokenService>();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<AppDbContext>();
 
 // Configurar autorização
 builder.Services.AddAuthorization(options =>

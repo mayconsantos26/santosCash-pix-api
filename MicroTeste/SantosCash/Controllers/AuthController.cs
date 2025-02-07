@@ -1,9 +1,9 @@
 ﻿using DTOs.User;
-using Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Models;
+using Services.Tokens;
 
 [ApiController]
 [Route("api/[controller]")]

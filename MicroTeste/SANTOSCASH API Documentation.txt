@@ -1,0 +1,96 @@
+📌 SANTOSCASH
+
+SANTOSCASH é um sistema financeiro desenvolvido em ASP.NET Core utilizando Basic Authentication e Entity Framework Core para gerenciamento de dados.
+
+📂 Estrutura do Projeto:
+A organização do projeto segue as melhores práticas do ASP.NET Core, com separação clara de responsabilidades:
+
+Controllers/ → Contém os controladores da API.
+Data/ → Contexto do banco de dados e migrações do Entity Framework Core.
+Docs/ → Documentação do projeto.
+DTOs/ → Objetos de Transferência de Dados (Data Transfer Objects).
+Handler/ → Manipuladores de autenticação e requisições.
+Helpers/ → Métodos auxiliares e classes de suporte.
+Mappings/ → Configurações do AutoMapper para conversão entre modelos e DTOs.
+Middleware/ → Middlewares personalizados para tratamento de requisições.
+Models/ → Modelos do banco de dados e entidades do EF Core.
+Repositories/ → Implementação do padrão Repository para acesso a dados.
+Services/ → Serviços de aplicação para regras de negócio.
+
+🛠️ Tecnologias Utilizadas:
+O projeto utiliza os seguintes pacotes e frameworks:
+
+Autenticação: Basic Authentication via AuthenticationHandler.
+ASP.NET Core: Framework principal para a API.
+Entity Framework Core: ORM para comunicação com banco de dados.
+Banco de Dados: PostgreSQL via Npgsql.EntityFrameworkCore.PostgreSQL.
+CORS: Configuração via Microsoft.AspNetCore.Cors.
+Swagger: Documentação da API com Swashbuckle.AspNetCore.
+Automapper: Mapeamento automático entre DTOs e Models.
+
+📥 Instalação e Configuração:
+
+1️- Pré-requisitos:
+Antes de iniciar, certifique-se de ter instalado:
+.NET SDK
+PostgreSQL (ou adapte para outro banco no appsettings.json)
+Visual Studio ou VS Code
+
+2️- Clonar o repositório:
+git clone https://github.com/https://github.com/mayconsantos26/SANTOSCASH.git
+cd SANTOSCASH
+ 
+3️- Configurar o banco de dados:
+No arquivo appsettings.json, configure a ConnectionString:
+"ConnectionStrings": {
+  "DefaultConnection": "Host=localhost;Database=santoscash;Username=seu_usuario;Password=sua_senha"
+}
+
+4️- Aplicar Migrações:
+dotnet ef database update
+
+5️- Rodar o Projeto:
+dotnet run
+O projeto será iniciado em http://localhost:5000 ou https://localhost:5001.
+
+🔑 Autenticação (Basic Authentication):
+O sistema usa Basic Authentication, exigindo que todas as requisições autenticadas enviem um cabeçalho Authorization:
+
+Authorization: Basic base64(usuario:senha)
+
+📌 Credenciais Padrão:
+Usuário: Admin
+Senha: Admin@@123
+
+🔄 Como autenticar via curl:
+curl -u Admin:Admin@@123 https://localhost:5001/api/protegida
+
+🔄 Como autenticar via Postman:
+Vá até a aba Authorization
+Escolha o tipo Basic Auth
+Insira o usuário e a senha (Admin / Admin@@123)
+Execute a requisição
+
+🛠️ Desenvolvimento:
+🔄 Rodando a aplicação no Docker:
+Se desejar executar a aplicação via Docker, use:
+
+docker build -t santoscash .
+docker run -p 5000:5000 -p 5001:5001 santoscash
+
+📌 Contribuição
+Se deseja contribuir com o projeto:
+
+Faça um fork do repositório
+Crie uma branch (git checkout -b minha-feature)
+Commit suas alterações (git commit -m 'Minha nova feature')
+Faça um push (git push origin minha-feature)
+Abra um Pull Request
+
+🧪 Rodando Testes
+Se houver testes configurados:
+
+dotnet test
+
+📄 Licença
+Este projeto está sob a licença MIT.

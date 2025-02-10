@@ -2,6 +2,7 @@
 using DTOs;
 using Services;
 using Microsoft.AspNetCore.Authorization;
+using Models; 
 
 namespace Controllers;
 
@@ -17,7 +18,8 @@ public class TransacoesController : ControllerBase
         _transacoesService = transacoesService;
     }
 
-    // GET: api/Transacoes (Apenas Admin e Usuário podem acessar)
+    // GET: api/Transacoes
+    [EndpointSummary("Retorna todas as transações. Dependendo do volume de dados, essa operação poderá ser lenta.")]
     [HttpGet]
     public async Task<ActionResult<IEnumerable<TransacoesDTO>>> GetAllTransacoes()
     {
@@ -28,11 +30,12 @@ public class TransacoesController : ControllerBase
         }
         catch (Exception ex)
         {
-            return StatusCode(500, new { message = ex.Message });
+            return StatusCode(500, new ErrorResponse { Message = ex.Message });
         }
     }
 
-    // GET: api/Transacoes/{txid} (Apenas Admin e Usuário podem acessar)
+    // GET: api/Transacoes/{txid}
+    [EndpointSummary("Retorna uma transação pelo Txid.")]
     [HttpGet("{txid}")]
     public async Task<ActionResult<TransacoesDTO>> GetTransacaoByTxid(string txid)
     {
@@ -41,21 +44,22 @@ public class TransacoesController : ControllerBase
             var transacao = await _transacoesService.GetTransacoesDTOByTxidAsync(txid);
             if (transacao == null)
             {
-                return NotFound(new { message = "Transação não encontrada." });
+                return NotFound(new ErrorResponse { Message = "Transação não encontrada." });
             }
             return Ok(transacao);
         }
         catch (KeyNotFoundException)
         {
-            return NotFound(new { message = "Transação não encontrada." });
+            return NotFound(new ErrorResponse { Message = "Transação não encontrada." });
         }
         catch (Exception ex)
         {
-            return StatusCode(500, new { message = ex.Message });
+            return StatusCode(500, new ErrorResponse { Message = ex.Message });
         }
     }
 
-    // POST: api/Transacoes (Apenas Admin e Usuário podem criar)
+    // POST: api/Transacoes
+    [EndpointSummary("Cria uma nova transação.")]
     [HttpPost]
     public async Task<ActionResult<TransacoesCreateResponseDTO>> CreateTransacao(TransacoesCreateRequestDTO request)
     {
@@ -66,15 +70,16 @@ public class TransacoesController : ControllerBase
         }
         catch (ArgumentException ex)
         {
-            return BadRequest(new { message = ex.Message });
+            return BadRequest(new ErrorResponse { Message = ex.Message });
         }
         catch (Exception ex)
         {
-            return StatusCode(500, new { message = ex.Message });
+            return StatusCode(500, new ErrorResponse { Message = ex.Message });
         }
     }
 
-    // PUT: api/Transacoes/{txid} (Apenas Admin pode atualizar)
+    // PUT: api/Transacoes/{txid}
+    [EndpointSummary("Atualiza uma transação, filtrando pelo Txid.")]
     [HttpPut("{txid}")]
     public async Task<ActionResult<TransacoesDTO>> UpdateTransacao(string txid, TransacoesUpdateDTO request)
     {
@@ -82,7 +87,7 @@ public class TransacoesController : ControllerBase
         {
             if (txid != request.Txid)
             {
-                return BadRequest(new { message = "Txid no corpo e na URL não correspondem." });
+                return BadRequest(new ErrorResponse { Message = "Txid no corpo e na URL não correspondem." });
             }
 
             var updatedTransacao = await _transacoesService.UpdateTransacoesDTOAsync(request);
@@ -90,19 +95,20 @@ public class TransacoesController : ControllerBase
         }
         catch (KeyNotFoundException)
         {
-            return NotFound(new { message = "Transação não encontrada." });
+            return NotFound(new ErrorResponse { Message = "Transação não encontrada." });
         }
         catch (ArgumentException ex)
         {
-            return BadRequest(new { message = ex.Message });
+            return BadRequest(new ErrorResponse { Message = ex.Message });
         }
         catch (Exception ex)
         {
-            return StatusCode(500, new { message = ex.Message });
+            return StatusCode(500, new ErrorResponse { Message = ex.Message });
         }
     }
 
-    // DELETE: api/Transacoes/{txid} (Apenas Admin pode deletar)
+    // DELETE: api/Transacoes/{txid}
+    [EndpointSummary("Deleta uma transação, filtrando pelo Txid.")]
     [HttpDelete("{txid}")]
     public async Task<ActionResult<TransacoesDTO>> DeleteTransacao(string txid)
     {
@@ -113,11 +119,11 @@ public class TransacoesController : ControllerBase
         }
         catch (KeyNotFoundException)
         {
-            return NotFound(new { message = "Transação não encontrada." });
+            return NotFound(new ErrorResponse { Message = "Transação não encontrada." });
         }
         catch (Exception ex)
         {
-            return StatusCode(500, new { message = ex.Message });
+            return StatusCode(500, new ErrorResponse { Message = ex.Message });
         }
     }
 }

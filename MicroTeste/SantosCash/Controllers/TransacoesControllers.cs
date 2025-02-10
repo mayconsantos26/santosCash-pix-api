@@ -7,16 +7,17 @@ namespace Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
+[Authorize]
 public class TransacoesController : ControllerBase
 {
     private readonly ITransacoesService _transacoesService;
 
-    public TransacoesController(ITransacoesService transacoesServices)
+    public TransacoesController(ITransacoesService transacoesService)
     {
-        _transacoesService = transacoesServices;
+        _transacoesService = transacoesService;
     }
-    
-    // GET: api/Transacoes
+
+    // GET: api/Transacoes (Apenas Admin e Usuário podem acessar)
     [HttpGet]
     public async Task<ActionResult<IEnumerable<TransacoesDTO>>> GetAllTransacoes()
     {
@@ -31,7 +32,7 @@ public class TransacoesController : ControllerBase
         }
     }
 
-    // GET: api/Transacoes/{txid}
+    // GET: api/Transacoes/{txid} (Apenas Admin e Usuário podem acessar)
     [HttpGet("{txid}")]
     public async Task<ActionResult<TransacoesDTO>> GetTransacaoByTxid(string txid)
     {
@@ -54,7 +55,7 @@ public class TransacoesController : ControllerBase
         }
     }
 
-    // POST: api/Transacoes
+    // POST: api/Transacoes (Apenas Admin e Usuário podem criar)
     [HttpPost]
     public async Task<ActionResult<TransacoesCreateResponseDTO>> CreateTransacao(TransacoesCreateRequestDTO request)
     {
@@ -73,7 +74,7 @@ public class TransacoesController : ControllerBase
         }
     }
 
-    // PUT: api/Transacoes/{txid}
+    // PUT: api/Transacoes/{txid} (Apenas Admin pode atualizar)
     [HttpPut("{txid}")]
     public async Task<ActionResult<TransacoesDTO>> UpdateTransacao(string txid, TransacoesUpdateDTO request)
     {
@@ -101,7 +102,7 @@ public class TransacoesController : ControllerBase
         }
     }
 
-    // DELETE: api/Transacoes/{txid}
+    // DELETE: api/Transacoes/{txid} (Apenas Admin pode deletar)
     [HttpDelete("{txid}")]
     public async Task<ActionResult<TransacoesDTO>> DeleteTransacao(string txid)
     {

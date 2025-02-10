@@ -1,11 +1,10 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
+﻿ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Models;
 
 namespace Data;
 
-public class AppDbContext : IdentityDbContext<ApplicationUser>
+public class AppDbContext : DbContext
 {
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) 
     { 
@@ -15,9 +14,7 @@ public class AppDbContext : IdentityDbContext<ApplicationUser>
     protected override void OnModelCreating(ModelBuilder mb)
     {
         // Fluent API - Definição de regras e relacionamentos das entidades no Banco de Dados
-
-        base.OnModelCreating(mb); // Chama o método OnModelCreating da classe base
-
+        
         // Definição da entidade Transações
         mb.Entity<Transacoes>()
             .HasKey(t => t.Id); // Configurando a chave primária

@@ -33,7 +33,7 @@ public class TransacoesControllerTests
             new TransacoesDTO { Txid = "tx2", Valor = 200 }
         };
 
-        _transacoesServiceMock.Setup(service => service.GetAll())
+        _transacoesServiceMock.Setup(service => service.GetAllAsync())
                               .ReturnsAsync(transacoesDTO);
 
         // Act

@@ -4513,11 +4513,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Fastcash Analista\\Documents\\GitHub\\aulas-backend\\MicroTeste\\SantosCash\\SantosCash.csproj",
+      "projectUniqueName": "C:\\Users\\Fastcash Analista\\Documents\\GitHub\\aulas-backend\\MicroTeste\\aulas-backend\\MicroTeste\\SantosCash\\SantosCash.csproj",
       "projectName": "SantosCash",
-      "projectPath": "C:\\Users\\Fastcash Analista\\Documents\\GitHub\\aulas-backend\\MicroTeste\\SantosCash\\SantosCash.csproj",
+      "projectPath": "C:\\Users\\Fastcash Analista\\Documents\\GitHub\\aulas-backend\\MicroTeste\\aulas-backend\\MicroTeste\\SantosCash\\SantosCash.csproj",
       "packagesPath": "C:\\Users\\Fastcash Analista\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Fastcash Analista\\Documents\\GitHub\\aulas-backend\\MicroTeste\\SantosCash\\obj\\",
+      "outputPath": "C:\\Users\\Fastcash Analista\\Documents\\GitHub\\aulas-backend\\MicroTeste\\aulas-backend\\MicroTeste\\SantosCash\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Fastcash Analista\\AppData\\Roaming\\NuGet\\NuGet.Config"

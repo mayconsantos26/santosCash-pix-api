@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "yvAqalyMWfc=",
+  "dgSpecHash": "fp3ydD9k0TY=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Fastcash Analista\\Documents\\GitHub\\aulas-backend\\MicroTeste\\SantosCash\\SantosCash.csproj",
+  "projectFilePath": "C:\\Users\\Fastcash Analista\\Documents\\GitHub\\aulas-backend\\MicroTeste\\aulas-backend\\MicroTeste\\SantosCash\\SantosCash.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Fastcash Analista\\.nuget\\packages\\asp.versioning.abstractions\\8.1.0\\asp.versioning.abstractions.8.1.0.nupkg.sha512",
     "C:\\Users\\Fastcash Analista\\.nuget\\packages\\asp.versioning.http\\8.1.0\\asp.versioning.http.8.1.0.nupkg.sha512",

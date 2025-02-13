@@ -13,7 +13,7 @@ public class TransacoesRepository : ITransacoesRepository
     }
 
     // Obter todas as transações
-    public async Task<IEnumerable<Transacoes>> GetAll()
+    public async Task<IEnumerable<Transacoes>> GetAllAsync()
     {
         return await _unitOfWork.Context.Transacoes.ToListAsync();
     }
@@ -29,36 +29,33 @@ public class TransacoesRepository : ITransacoesRepository
     }
 
     // Criar uma nova transação
-    public async Task<Transacoes> CreateAsync(Transacoes transacao)
+    public async Task<Transacoes> CreateAsync(Transacoes create)
     {
-        if (transacao == null)
-            throw new ArgumentNullException(nameof(transacao));
+        if (create == null)
+            throw new ArgumentNullException(nameof(create));
 
-        _unitOfWork.Context.Transacoes.Add(transacao);
-        await _unitOfWork.SaveChangesAsync();
-        return transacao;
+        _unitOfWork.Context.Transacoes.Add(create);
+        return create;
     }
 
     // Atualizar transação existente
-    public async Task<Transacoes> UpdateAsync(Transacoes transacao)
+    public async Task<Transacoes> UpdateAsync(Transacoes update)
     {
-        if (transacao == null)
-            throw new ArgumentNullException(nameof(transacao));
+        if (update == null)
+            throw new ArgumentNullException(nameof(update));
 
-        _unitOfWork.Context.Transacoes.Update(transacao);
-        await _unitOfWork.SaveChangesAsync();
-        return transacao;
+        _unitOfWork.Context.Transacoes.Update(update);
+        return update;
     }
 
     // Remover transação por Txid
-    public async Task<Transacoes> DeleteByTxidAsync(string txid)
+    public async Task<Transacoes> DeleteByTxidAsync(string delete)
     {
-        var transacao = await GetByTxidAsync(txid);
+        var transacao = await GetByTxidAsync(delete);
         if (transacao == null)
             throw new KeyNotFoundException("Transação não encontrada.");
 
         _unitOfWork.Context.Transacoes.Remove(transacao);
-        await _unitOfWork.SaveChangesAsync();
         return transacao;
     }
 }

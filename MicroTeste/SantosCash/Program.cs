@@ -89,6 +89,8 @@ public class Program
             }
         });
 
+        app.UseMiddleware<ExceptionHandlingMiddleware>();
+
         app.UseHttpsRedirection();
 
         app.UseRouting();

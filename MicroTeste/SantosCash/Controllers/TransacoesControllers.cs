@@ -2,7 +2,6 @@
 using DTOs;
 using Services;
 using Microsoft.AspNetCore.Authorization;
-using Models; 
 
 namespace Controllers;
 
@@ -25,7 +24,7 @@ public class TransacoesController : ControllerBase
     {
         try
         {
-            var transacoes = await _transacoesService.GetAll();
+            var transacoes = await _transacoesService.GetAllAsync();
             return Ok(transacoes);
         }
         catch (Exception ex)
